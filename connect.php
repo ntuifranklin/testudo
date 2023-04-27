@@ -23,15 +23,17 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ( $conn -> connect_error ) {
   die("Connection failed: ". $conn -> connect_error ) ;
 } ;
-echo "Connected successfully";
-
+echo "Connected to mysql successfully";
+$a = 1024 ;
+$z = 9999 ;
+echo "<br/> Generating a random number between $a and $z <br/>.      that should be different every time ".rand($a,$z) ;
 $sql = "SELECT * FROM STUDENT;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "<br/> UID: " . $row["UID"]. "<br/> - FIRST Name: " . $row["FIRSTNAME"]. " <br/> LAST NAME" . $row["LASTNAME"]. "<br>";
+    echo "<br/> UID: " . $row["UID"]. "<br/> - FIRST Name: " . $row["FIRSTNAME"]. " <br/> - LAST NAME: " . $row["LASTNAME"]. "<br>";
   }
 } else {
   echo "0 results";
