@@ -31,7 +31,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "UID: " . $row["UID"]. " - Name: " . $row["FIRSTNAME"]. " " . $row["LASTNAME"]. "<br>";
+    echo "<br/> UID: " . $row["UID"]. "<br/> - FIRST Name: " . $row["FIRSTNAME"]. " <br/> LAST NAME" . $row["LASTNAME"]. "<br>";
   }
 } else {
   echo "0 results";
