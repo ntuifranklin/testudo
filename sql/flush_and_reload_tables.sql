@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS ASSIGNMENT (
 INSERT INTO STUDENT VALUES (
     '48332382',
     'mfisher',
-    'fhsgdfj473fdg',
+    'fhsgd',
     '2000-03-23',
     'Mary',
     'Rose',
@@ -40,7 +40,7 @@ INSERT INTO STUDENT VALUES (
 INSERT INTO STUDENT VALUES (
     '7698560',
     'jsilverman',
-    'sh34252vfsdf', 
+    'sh3425', 
     '2001-06-14',
     'John',
     'Kand',
