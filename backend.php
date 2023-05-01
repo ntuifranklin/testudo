@@ -2,6 +2,9 @@
 
 require_once("./library.php") ;
 
+if(!array_key_exists("action", $_GET)) {
+    die("{'result':'Unauthorized'}");
+} ;
 $action = $_GET['action'];
 $action = strtolower($action);
 switch ($action) {

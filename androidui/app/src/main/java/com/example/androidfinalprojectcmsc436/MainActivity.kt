@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var usernameET : EditText
     lateinit var passwordET : EditText
     lateinit var loginButtonView : Button
+    lateinit var loginTask : AccessWebThreadTask
     var result: String = ""
+    var loginUrl : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,40 +40,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun checkUserLogin()  {
+        //sending to thread task the username and password text
 
-        try {
-            // create URL
+        loginTask = AccessWebThreadTask( this, usernameET, passwordET )
+        loginTask.start()
 
-            var url: String = LOGIN_BASE_URL
-            val uid : String  = usernameET.text.toString()
-            val login : String = usernameET.text.toString()
-            val password : String = passwordET.text.toString()
-            if (login.isDigitsOnly()) {
-                // user is trying to log in with uid
-                url = "$url?uid=$uid"
-            }else {
-                url = "$url?login=$login"
-            }
-            // now add password
-            url = "$url&password=$password"
-            Log.w(MA, "" + url)
 
-            var urlObject: URL = URL(url)
+    }
 
-            val iStream: InputStream = urlObject.openStream()
-            // read from input stream, accumulate into result
-            val scan: Scanner = Scanner(iStream)
-            result = ""
-            while (scan.hasNext())
-            {
-                result += scan.nextLine()
-                Log.w(MA, result)
-            }
-
-        } catch ( e : JSONException) {
-            Log.w( MA, "Exception: " + e.message )
-        }
-
+    fun showStudentDashboard(student: String) {
+        Log.w(MA, "Student is logged in" + student);
     }
 
     inner class ButtonHandler : View.OnClickListener {
@@ -85,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
-        const val LOGIN_BASE_URL: String = "https://localhost/cmsc436grproj/getuser.php"
+        const val SERVER_BASE_URL: String = "http://localhost:8298/cmsc436grproj/backend.php"
         const val MA : String =  "FinalProjectMainActivity"
     }
 

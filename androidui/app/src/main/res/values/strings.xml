@@ -25,13 +25,13 @@
 
 
 
-    <string name="login_name_label">UID/USERNAME</string>
+    <string name="login_name_label">USERNAME</string>
     <string name="password_label">PASSWORD</string>
     <string name="login_button_label">LOGIN</string>
 
     <!--  some Place Holders  -->
 
-    <string name="login_name_placeholder">Enter UID or Username</string>
+    <string name="login_name_placeholder">Enter Username</string>
     <string name="password_text_placeholder">Enter your Password</string>
 
 </resources>
