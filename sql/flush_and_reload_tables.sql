@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS ASSIGNMENT (
 INSERT INTO STUDENT VALUES (
     '48332382',
     'mfisher',
-    'fhsgdfj#@#&*^473fdg',
+    'fhsgdfj473fdg',
     '2000-03-23',
     'Mary',
     'Rose',
@@ -38,7 +38,7 @@ INSERT INTO STUDENT VALUES (
 INSERT INTO STUDENT VALUES (
     '7698560',
     'jsilverman',
-    'hghd5435sdfg$#@fsgd98',
+    'sh34252vfsdf', 
     '2001-06-14',
     'John',
     'Kand',
@@ -48,7 +48,7 @@ INSERT INTO STUDENT VALUES (
 INSERT INTO STUDENT VALUES (
     '5835653',
     'ccharlotte',
-    'sh34252$#$vfsdf%%',
+    'hghd5435sdf',
     '1999-11-05',
     'Christine',
     'Beane',
