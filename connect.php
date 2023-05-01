@@ -26,7 +26,7 @@ if ( $conn -> connect_error ) {
 echo "Connected to mysql successfully";
 $a = 1024 ;
 $z = 9999 ;
-echo "<br/> Generating a random number between $a and $z <br/>.      that should be different every time ".rand($a,$z) ;
+echo "<br/> Generating a random number between $a and $z <br/>that should be different every time ".rand($a,$z) ;
 $sql = "SELECT * FROM STUDENT;";
 $result = $conn->query($sql);
 

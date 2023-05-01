@@ -1,7 +1,9 @@
+DROP DATABASE IF EXISTS `fnkokamn_terpdb` ;
+CREATE DATABASE IF NOT EXISTS `fnkokamn_terpdb` ;
+USE `fnkokamn_terpdb` ;
 DROP TABLE IF EXISTS ASSIGNMENT ;
 DROP TABLE IF EXISTS COURSE ;
 DROP TABLE IF EXISTS STUDENT ;
-
 
 CREATE TABLE IF NOT EXISTS STUDENT  (  
  UID VARCHAR(100) NOT NULL PRIMARY KEY,  
@@ -29,7 +31,7 @@ CREATE TABLE IF NOT EXISTS ASSIGNMENT (
 INSERT INTO STUDENT VALUES (
     '48332382',
     'mfisher',
-    'fhsgdfj#@#&*^473fdg',
+    'fhsgd',
     '2000-03-23',
     'Mary',
     'Rose',
@@ -38,7 +40,7 @@ INSERT INTO STUDENT VALUES (
 INSERT INTO STUDENT VALUES (
     '7698560',
     'jsilverman',
-    'hghd5435sdfg$#@fsgd98',
+    'sh3425', 
     '2001-06-14',
     'John',
     'Kand',
@@ -48,7 +50,7 @@ INSERT INTO STUDENT VALUES (
 INSERT INTO STUDENT VALUES (
     '5835653',
     'ccharlotte',
-    'sh34252$#$vfsdf%%',
+    'hghd5435sdf',
     '1999-11-05',
     'Christine',
     'Beane',
