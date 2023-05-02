@@ -67,7 +67,7 @@ The [`androidui`](https://github.com/ntuifranklin/cmsc436grproj/tree/main/androi
 
 # Server Setup
 The server needs to have `wamp` or `xamp` server setup.
-The [./sql/flush_and_reload_tables.sq](./sql/flush_and_reload_tables.sql) contains the sql queries to create the database on server side from scratch.  
+The [./sql/flush_and_reload_tables.sql](./sql/flush_and_reload_tables.sql) contains the sql queries to create the database on server side from scratch.  
 The only manual thing to do is to create the user `fnkokamn_dbadmin` with password `AV7y8JFAnSrkyzy`.  
 The [`grant mysql query`](https://dev.mysql.com/doc/refman/8.0/en/grant.html) also needs to be run to grant the new creaed user privileges to run queries on the backend. 
 The following parameters need to be set server side for the android app to run properly 
@@ -81,7 +81,7 @@ $database = "fnkokamn_terpdb";
 # Backend calls
 Format : `http://server.domain/backend.php?action=action_name&param1=value1&param_i=value_i`
 `server.domain` is supposed to be [`s56.cmsc436-2301.cs.umd.edu/server`](https://s56.cmsc436-2301.cs.umd.edu/server). For some reason the firewall might block access in android. 
-The examples below use an aws free instance running at [`http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grpro`](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj).   
+The examples below use an aws free instance running at [`http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj`](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj).   
 
 Example of backedn call actions (value that the URL_LINK in android is supposed to take) :
 - List all students 
