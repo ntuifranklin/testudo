@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     fun showStudentDashboard(s: String) {
         Log.w(MA, "Reslt from backend server" + s)
         try{
@@ -64,8 +65,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Student Logged In successfully",Toast.LENGTH_SHORT).show()
             Toast.makeText(this,"Student Logged Details :",Toast.LENGTH_SHORT).show()
             Toast.makeText(this,"First Name :" + firstname + " Last Name : "+ lastname,Toast.LENGTH_LONG).show()
+
         } catch ( e : Exception) {
-            Log.w(MainActivity.MA, "Exception: " + e.message ) ;
+            Log.w(MainActivity.MA, "Exception: " + e.message )
+            Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
         }
 
     }
