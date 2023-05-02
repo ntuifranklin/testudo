@@ -29,8 +29,13 @@ view the content of the public key just created( in this case the key name is id
 type id_rsa.pub
 ```  
 
-### On Linux/MAC
+Add key to ssh agent. Hoepflly you are in the `.ssh` folder
+```
+ssh-add .\id_rsa
+ssh-copy-id .\id_rsa
+```  
 
+### On Linux/MAC
 ```
 cd ~
 ```  
@@ -54,6 +59,7 @@ cat id_rsa.pub
 
 Add key to ssh agent
 ```
+ssh-add ~/.ssh/id_rsa
 ssh-copy-id ~/.ssh/id_rsa
 eval "$(ssh-agent -s)"
 ```
