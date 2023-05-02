@@ -81,7 +81,7 @@ $database = "fnkokamn_terpdb";
 # Backend calls
 Format : `http://server.domain/backend.php?action=action_name&param1=value1&param_i=value_i`
 `server.domain` is supposed to be [`s56.cmsc436-2301.cs.umd.edu/server`](https://s56.cmsc436-2301.cs.umd.edu/server). For some reason the firewall might block access in android. 
-The examples below use an aws free instance running at [`http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grpro`](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grpro).   
+The examples below use an aws free instance running at [`http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grpro`](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj).   
 
 Example of backedn call actions (value that the URL_LINK in android is supposed to take) :
 - List all students 
