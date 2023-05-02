@@ -54,4 +54,12 @@
              />
     </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginTop="300dp"
+        android:id="@+id/ad" >
+    </TableRow>
+
 </TableLayout>
