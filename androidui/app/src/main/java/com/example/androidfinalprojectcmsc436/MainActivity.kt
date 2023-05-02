@@ -8,8 +8,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TableRow
 import android.widget.Toast
 import androidx.core.text.isDigitsOnly
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -33,9 +37,33 @@ class MainActivity : AppCompatActivity() {
         passwordET = findViewById(R.id.login_password)
         loginButtonView = findViewById(R.id.login_button)
         loginButtonView.setOnClickListener(ButtonHandler())
+
+        createAd( )
     }
 
+    fun createAd( ) : Unit {
+        var adView : AdView = AdView( this )
+        var adSize : AdSize = AdSize( AdSize.FULL_WIDTH, AdSize.AUTO_HEIGHT)
+        adView.setAdSize( adSize )
+        var unitId : String = "ca-app-pub-3940256099942544/6300978111"
+        adView.adUnitId = unitId
 
+        var adRequestBuilder :AdRequest.Builder = AdRequest.Builder( )
+        adRequestBuilder.addKeyword("School")
+        adRequestBuilder.addKeyword("Student")
+        adRequestBuilder.addKeyword("College")
+        adRequestBuilder.addKeyword("Grades")
+        var adRequest : AdRequest = adRequestBuilder.build()
+
+        var adTableRow : TableRow = findViewById<TableRow>(R.id.ad)
+        adTableRow.addView(adView)
+
+        try {
+            adView.loadAd(adRequest)
+        } catch( e : Exception) {
+            Log.w("MainActivity", "Error loading the ad")
+        }
+    }
 
     fun goBack( v : View) {
         // go back
