@@ -105,6 +105,10 @@ Example of backedn call actions (value that the URL_LINK in android is supposed 
 - [Jacob Cuff](https://github.com/jcuff1)
 - [Franklin Ngongang](https://github.com/ntuifranklin)
 
+# Potential Errors  
+When you `git fetch` or `git pull` from the main branch, the newly added google ad code might  
+not work if you did not rebuild after addition of google ad api key. To fix :
+- [Stack Overflow Issue here](https://stackoverflow.com/questions/52458939/can-not-resolve-com-google-android-gms-ads-mobileads)
 # References
 
 - [Generate a new ssh key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
