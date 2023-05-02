@@ -99,11 +99,11 @@ Example of backedn call actions (value that the URL_LINK in android is supposed 
 - [Our Zoom meeting](https://umd.zoom.us/j/3773753652)
 - [Project Description](https://drive.google.com/file/d/1IuR6Oc_YbCJ_7MTXSxKA6H6RYk8fBHRP/view?usp=share_link)
 
-# Contributors (by alphaebetical order)
-- [Franklin Ngongang](https://github.com/ntuifranklin)
+# Contributors
 - [Gloria Hyein Leem](#contributors-by-alphaebetical-order)
 - [Ian Yeh](https://github.com/ilyeh)
 - [Jacob Cuff](https://github.com/jcuff1)
+- [Franklin Ngongang](https://github.com/ntuifranklin)
 
 # References
 
