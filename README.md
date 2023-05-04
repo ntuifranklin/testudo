@@ -91,9 +91,9 @@ Example of backedn call actions (value that the URL_LINK in android is supposed 
 - List one student
 [https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getuser&username=mfisher&password=fhsgd](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getuser&username=mfisher&password=fhsgd).  
  ![List one student](./imgs/onestudent.png)
-- List a Course 
-Need the `courseid` and `coursetitle` parameters in the url.
-[`List CMSC131`](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=course&coureid=CMSC131)
+- List a Course  
+Need the `courseid` and `coursetitle` parameters in the url:  
+[`List CMSC131`](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=course&courseid=CMSC131)
 - List all courses
 [`List CMSC131`](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=courses)
 

@@ -85,7 +85,7 @@ function get_course_infos($courseid='',$coursetitle='') {
         $stmt->bind_param("ss", $courseid, $coursetitle);
     } else {
         $stmt = $conn->prepare($partial_sql);
-        $stmt->bind_param("ss", $courseid);
+        $stmt->bind_param("s", $courseid);
     }
     
     $stmt -> execute();
