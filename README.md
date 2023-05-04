@@ -1,4 +1,7 @@
-# cmsc436grproj
+# cmsc436grproj  
+
+<img src='./imgs/banner.gif'>  
+
 # CMSC436 Group Final Project
 Welcome to our Final Project for CMSC436 Spring 2023.
 This project is supposed to be private, and not visible unless logged into github, and also a member of this repo.
