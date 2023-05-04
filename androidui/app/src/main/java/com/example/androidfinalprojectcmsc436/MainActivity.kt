@@ -81,22 +81,22 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun showStudentDashboard(s: String) {
-        Log.w(MA, "Reslt from backend server" + s)
+    fun showStudentDashboard(student: Student) {
+        Log.w(MA, "Result from backend server" + student)
         try{
-            var d : JSONArray = JSONArray(s)
 
-            var jsa : JSONObject = d.optJSONObject(0)
-            var firstname : String = jsa.getString("FIRSTNAME")
-            var lastname : String = jsa.getString("LASTNAME")
+            //Toast.makeText(this,"Student Logged In successfully" + student.toString(),Toast.LENGTH_SHORT).show()
+            // show a dashboard for the student
+            LOGGED_IN_STUDENT = student
+            var myIntent : Intent = Intent( this, StudentDashboardActivity::class.java )
+            startActivity( myIntent )
 
-            Toast.makeText(this,"Student Logged In successfully",Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"Student Logged Details :",Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"First Name :" + firstname + " Last Name : "+ lastname,Toast.LENGTH_LONG).show()
+            // V3
+            overridePendingTransition( R.anim.slide_from_left, 0 )
 
         } catch ( e : Exception) {
-            Log.w(MainActivity.MA, "Exception: " + e.message )
-            Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
+            Log.w(MA, "Exception: " + e.message )
+            //Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
         const val SERVER_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
         const val MA : String =  "FinalProjectMainActivity"
+        lateinit var LOGGED_IN_STUDENT : Student
     }
 
 }
