@@ -37,7 +37,7 @@ class AccessWebThreadTask : Thread {
 
             val username : String = usernameET.text.toString()
             val password : String = passwordET.text.toString()
-            loginUrl = "$loginUrl?action=getuser&username=$username"
+            loginUrl = "$loginUrl?action=user&username=$username"
             // now add password
             loginUrl = "$loginUrl&password=$password"
             Log.w(MainActivity.MA, "Accessing login URL : " + loginUrl)
