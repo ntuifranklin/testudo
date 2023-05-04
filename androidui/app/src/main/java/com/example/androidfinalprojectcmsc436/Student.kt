@@ -74,4 +74,14 @@ class Student {
         this.lastname = lastname
     }
 
+    override fun toString(): String {
+        return  "UID: $uid \n" +
+                "Username: $username \n" +
+                "Date Of Birth: $dob \n" +
+                "First Name: $firstname \n" +
+                "Middle Name: $middlename \n" +
+                "Last Name: $lastname \n"
+
+    }
+
 }
