@@ -97,11 +97,13 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnTouchListener {
         // student's first name
         identityTV = TextView(this)
         var identityString : String = ""
-        identityString += "Logged In User: "
-        identityString += "\nUsername: " + MainActivity.LOGGED_IN_STUDENT.getUsername()
+        identityString += "Logged In User "
         identityString += "\nUID: " + MainActivity.LOGGED_IN_STUDENT.getUid()
+        identityString += "\nUsername: " + MainActivity.LOGGED_IN_STUDENT.getUsername()
+        identityString += "\nFull Name: " + MainActivity.LOGGED_IN_STUDENT.getFirstName() +
+                " " + MainActivity.LOGGED_IN_STUDENT.getLastName()
         identityTV.setText(identityString)
-        var identityParams : RelativeLayout.LayoutParams = RelativeLayout.LayoutParams( bw, (bh.toFloat()*1.1).toInt())
+        var identityParams : RelativeLayout.LayoutParams = RelativeLayout.LayoutParams( bw, (bh.toFloat()*1.6).toInt())
         identityParams.leftMargin = leftMargin
         identityParams.topMargin = 2
         rl.addView( identityTV, identityParams )

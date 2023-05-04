@@ -40,6 +40,6 @@
     <string name="dashboard_view_registered_courses">View Registered Courses</string>
 
     <string name="dashboard_view_grades">See Your Grades</string>
-    <string name="dashboard_goback"> &lt;= LOG OUT </string>
+    <string name="dashboard_goback"> LOG OUT </string>
 
 </resources>
