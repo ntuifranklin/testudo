@@ -85,12 +85,18 @@ class MainActivity : AppCompatActivity() {
         Log.w(MA, "Result from backend server" + student)
         try{
 
-            Toast.makeText(this,"Student Logged In successfully" + student.toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"Student Logged In successfully" + student.toString(),Toast.LENGTH_SHORT).show()
             // show a dashboard for the student
+            LOGGED_IN_STUDENT = student
+            var myIntent : Intent = Intent( this, StudentDashboardActivity::class.java )
+            startActivity( myIntent )
+
+            // V3
+            overridePendingTransition( R.anim.slide_from_left, 0 )
 
         } catch ( e : Exception) {
-            Log.w(MainActivity.MA, "Exception: " + e.message )
-            Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
+            Log.w(MA, "Exception: " + e.message )
+            //Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -108,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
         const val SERVER_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
         const val MA : String =  "FinalProjectMainActivity"
+        lateinit var LOGGED_IN_STUDENT : Student
     }
 
 }

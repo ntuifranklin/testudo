@@ -25,14 +25,21 @@
 
 
 
-    <string name="login_name_label">USERNAME</string>
-    <string name="password_label">PASSWORD</string>
+    <string name="login_name_label">USERNAME : </string>
+    <string name="password_label">PASSWORD : </string>
     <string name="login_button_label">LOGIN</string>
 
     <string name="student_success_logged_in">You Successfully Logged In</string>
     <!--  some Place Holders  -->
 
     <string name="login_name_placeholder">Enter Username</string>
-    <string name="password_text_placeholder">Enter your Password</string>
+    <string name="password_text_placeholder">Enter Password</string>
+
+    <!--  Student Dashboard Strings Titles -->
+    <string name="dashboard_register_course">Register For A Course</string>
+    <string name="dashboard_view_registered_courses">View Registered Courses</string>
+
+    <string name="dashboard_view_grades">See Your Grades</string>
+    <string name="dashboard_goback"> &lt;= LOG OUT </string>
 
 </resources>
