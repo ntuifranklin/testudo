@@ -8,7 +8,7 @@ if(!array_key_exists("action", $_GET)) {
 $action = $_GET['action'];
 $action = strtolower($action);
 switch ($action) {
-    case 'getuser':{
+    case 'user':{
         
         $studentpassword = "" ;
         $studentusername = "" ;
@@ -25,9 +25,27 @@ switch ($action) {
 
     };
     break;
-    case 'getusers':
+    case 'users':{
         echo get_all_students();
-        break;
+    } ; break ;
+    case 'courses':{
+        echo get_all_courses();
+    } ; break ;
+    case 'course':{
+        
+        $courseid = "" ;
+        $coursetitle = "" ;
+        
+        if(array_key_exists("courseid", $_GET)){
+            $courseid = $_GET['courseid'];
+        } ;
+
+        if(array_key_exists("coursetitle", $_GET)){
+            $coursetitle = $_GET['coursetitle'];
+        } ;
+        echo get_course_infos($courseid,$coursetitle);
+        
+    } ; break ;
     case 'putuser':
         echo "{'result':'TODO:PUTUSER'}";
         break;

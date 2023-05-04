@@ -81,17 +81,21 @@ $database = "fnkokamn_terpdb";
 # Backend calls
 Format : `http://server.domain/backend.php?action=action_name&param1=value1&param_i=value_i`
 `server.domain` is supposed to be [`s56.cmsc436-2301.cs.umd.edu/server`](https://s56.cmsc436-2301.cs.umd.edu/server). For some reason the firewall might block access in android. 
-The examples below use an aws free instance running at [`http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj`](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj).   
+The examples below use an aws free instance running at [`https://s56.cmsc436-2301.cs.umd.edu/server`](https://s56.cmsc436-2301.cs.umd.edu/server/).   
 
 Example of backedn call actions (value that the URL_LINK in android is supposed to take) :
 - List all students 
- [http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php?action=getusers](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php?action=getusers).  
+ [https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getusers](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getusers).  
  This should produce a screen shot that looks like the image below : 
  ![All students image](./imgs/allstudents.png).  
 - List one student
-[http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php?action=getuser&username=mfisher&password=fhsgd](http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php?action=getuser&username=mfisher&password=fhsgd).  
+[https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getuser&username=mfisher&password=fhsgd](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getuser&username=mfisher&password=fhsgd).  
  ![List one student](./imgs/onestudent.png)
-
+- List a Course 
+Need the `courseid` and `coursetitle` parameters in the url.
+[`List CMSC131`](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=course&coureid=CMSC131)
+- List all courses
+[`List CMSC131`](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=courses)
 
 # Important Links 
 - [Google Drive](https://drive.google.com/drive/folders/1S7O9GnaQ03TETIQG_aGKG_-kH0UECRlk)
