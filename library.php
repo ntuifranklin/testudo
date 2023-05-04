@@ -49,6 +49,56 @@ function get_all_students() {
 
 } ;
 
+function get_all_courses() {
+    
+    $conn = connectdb();
+    $sql = "SELECT * FROM COURSE;";
+    $result = $conn->query($sql);
+
+    $conn -> close();
+    $r = [] ;
+    while($row = $result->fetch_assoc()) {
+        array_push($r, $row);
+    } ;
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+    
+
+} ;
+
+
+/**
+ * You can only query a course by course id or corse title
+ */
+function get_course_infos($courseid='',$coursetitle='') {
+    /*
+    * Return if course id is empty
+    */
+    if (strlen(strval($courseid)) == 0 )
+        return json_decode("{'result':'Requesting a course without a course id'}", JSON_PRETTY_PRINT) ;
+
+    $conn = connectdb();
+    $partial_sql = "SELECT * FROM COURSE WHERE CID=?";
+    
+    // The course title was specified
+    if (strlen(strval($coursetitle)) > 0 ) {
+        $partial_sql .= " AND COURSETITLE=?; ";
+        $stmt->bind_param("ss", $courseid, $coursetitle);
+    } else {
+        $stmt = $conn->prepare($partial_sql);
+        $stmt->bind_param("s", $courseid);
+    }
+    
+    $stmt -> execute();
+    $result = $stmt -> get_result() ;
+    $r = [] ;
+    while($row = $result->fetch_assoc()) {
+        array_push($r, $row);
+    } ;
+    $conn -> close();
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+    
+} ;
+
 
 
 

@@ -40,6 +40,7 @@ class AccessWebThreadTask : Thread {
 
             var username : String = usernameET.text.toString()
             var password : String = passwordET.text.toString()
+
             loginUrl = "$loginUrl?action=user&username=$username"
             // now add password
             loginUrl = "$loginUrl&password=$password"
