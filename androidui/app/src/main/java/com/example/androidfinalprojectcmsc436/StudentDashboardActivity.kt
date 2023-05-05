@@ -1,6 +1,7 @@
 package com.example.androidfinalprojectcmsc436
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 
-class StudentDashboardActivity : AppCompatActivity(), View.OnTouchListener {
+class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var regCourseButton : Button
     lateinit var paramRegC : RelativeLayout.LayoutParams
@@ -58,6 +59,11 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnTouchListener {
         buildGuiByCode()
     }
 
+    fun goToRegisterClasses( v : View) {
+        var regClassesIntent : Intent = Intent( this, RegisterClassesActivity::class.java )
+        startActivity( regClassesIntent )
+    }
+
     fun goBack( v : View) {
         // V2
         // go back
@@ -72,7 +78,8 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnTouchListener {
         viewGrades = Button(this)
         goBackButton = Button(this)
 
-        goBackButton.setOnTouchListener(this)
+        regCourseButton.setOnClickListener(this)
+        goBackButton.setOnClickListener(this)
 
 
         regCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
@@ -80,6 +87,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnTouchListener {
 
         viewRegisCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
         viewRegisCourseButton.setText(R.string.dashboard_view_registered_courses)
+        viewRegisCourseButton.layout
 
 
         viewGrades.setBackgroundColor( resources.getColor(R.color.purple_700) )
@@ -135,13 +143,13 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnTouchListener {
 
     }
 
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        if( event != null && v != null && v.id == goBackButton.id) {
+    override fun onClick(v: View?) {
+
+        if( v != null && v == goBackButton) {
             goBack(goBackButton)
-
-
+        } else if (v != null && v == regCourseButton) {
+            goToRegisterClasses(regCourseButton)
         }
-        return true
     }
 
     inner class DButton : AppCompatButton {
