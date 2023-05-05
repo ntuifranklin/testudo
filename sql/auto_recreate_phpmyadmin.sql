@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 05, 2023 at 06:24 PM
+-- Generation Time: May 05, 2023 at 06:40 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -23,7 +23,7 @@ USE `fnkokamn_terpdb`;
 --
 -- Table structure for table `ASSIGNMENT`
 --
--- Creation: May 05, 2023 at 04:23 PM
+-- Creation: May 05, 2023 at 04:38 PM
 --
 
 DROP TABLE IF EXISTS `ASSIGNMENT`;
@@ -50,7 +50,8 @@ TRUNCATE TABLE `ASSIGNMENT`;
 --
 -- Table structure for table `COURSE`
 --
--- Creation: May 05, 2023 at 04:23 PM
+-- Creation: May 05, 2023 at 04:38 PM
+-- Last update: May 05, 2023 at 04:38 PM
 --
 
 DROP TABLE IF EXISTS `COURSE`;
@@ -72,13 +73,31 @@ CREATE TABLE IF NOT EXISTS `COURSE` (
 --
 
 TRUNCATE TABLE `COURSE`;
+--
+-- Dumping data for table `COURSE`
+--
+
+INSERT INTO `COURSE` VALUES('CMSC131', 'Introduction To Object Oriented Programming I', 'SPRING', '2023-01-01', 4);
+INSERT INTO `COURSE` VALUES('CMSC132', 'Introduction To Object Oriented Programming II', 'SPRING', '2023-01-01', 4);
+INSERT INTO `COURSE` VALUES('CMSC216', 'Introduction To System Programming In C', 'SPRING', '2023-01-01', 4);
+INSERT INTO `COURSE` VALUES('CMSC250', 'Discrete Mathematics', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC330', 'Organisation Of Programming Languages', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC351', 'Algorithms', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC412', 'Operating Systems', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC420', 'Advanced Data Strctures', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC430', 'Introduction To Compilers', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC433', 'Programming Language Technologies and Paradigms', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC436', 'Programming Handheld Systems', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC451', 'Design and Analysis of Computer Algorithms', 'SPRING', '2023-01-01', 3);
+INSERT INTO `COURSE` VALUES('CMSC456', 'Introduction to Cryptography', 'SPRING', '2023-01-01', 3);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `STUDENT`
 --
--- Creation: May 05, 2023 at 04:20 PM
--- Last update: May 05, 2023 at 04:20 PM
+-- Creation: May 05, 2023 at 04:38 PM
+-- Last update: May 05, 2023 at 04:38 PM
 --
 
 DROP TABLE IF EXISTS `STUDENT`;
@@ -115,7 +134,7 @@ INSERT INTO `STUDENT` VALUES('7698560', 'jsilverman', 'sh3425', '2001-06-14', 'J
 --
 -- Table structure for table `STUDENTSUBMITSASSIGNMENT`
 --
--- Creation: May 05, 2023 at 04:20 PM
+-- Creation: May 05, 2023 at 04:38 PM
 --
 
 DROP TABLE IF EXISTS `STUDENTSUBMITSASSIGNMENT`;
