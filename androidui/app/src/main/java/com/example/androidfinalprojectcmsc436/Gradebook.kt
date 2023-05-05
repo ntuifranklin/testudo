@@ -9,7 +9,15 @@ class Gradebook {
     }
 
     fun getCourses( ) : Array<String> {
-        return classes
+        var courses = getAllCourseObjects()
+        var dbclasses : Array<String> = courses.toArray() as Array<String>
+
+        return dbclasses
+    }
+
+    fun getAllCourseObjects() : ArrayList<Course> {
+        var courses : ArrayList<Course> = Backend().get_all_courses_from_database()
+        return Backend().get_all_courses_from_database()
     }
 
     fun setCourses( ) : Unit {
