@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RelativeLayout
+import android.widget.TextClock
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
@@ -64,9 +65,12 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         startActivity( regClassesIntent )
     }
 
+    fun goToViewGrades( v : View) {
+        var viewGradesIntent : Intent = Intent( this, ShowGradesActivity::class.java)
+        startActivity( viewGradesIntent )
+    }
+
     fun goBack( v : View) {
-        // V2
-        // go back
         finish( )
         overridePendingTransition( R.anim.fade_in_and_scale, 0 )
     }
@@ -80,7 +84,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
 
         regCourseButton.setOnClickListener(this)
         goBackButton.setOnClickListener(this)
-
+        viewGrades.setOnClickListener(this)
 
         regCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
         regCourseButton.setText(R.string.dashboard_register_course)
@@ -140,7 +144,6 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
 
         setContentView( rl )
 
-
     }
 
     override fun onClick(v: View?) {
@@ -149,6 +152,8 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
             goBack(goBackButton)
         } else if (v != null && v == regCourseButton) {
             goToRegisterClasses(regCourseButton)
+        } else if (v != null && v == viewGrades) {
+            goToViewGrades(viewGrades)
         }
     }
 
