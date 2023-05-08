@@ -34,7 +34,7 @@ function get_student_infos($username='',$password='') {
 } ;
 
 function register_course($studentid='',$courseid='') {
-    $r = ""
+    $r = "";
     $conn = connectdb();
     $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, NOW()) ;");
     $enrollid=  uniqid("$studentid.$courseid", true);

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL);
 require_once("./library.php") ;
 $unathorized = "{'result':'Unknown operation'}";
 if(!array_key_exists("action", $_POST)) {
@@ -18,7 +18,7 @@ switch ($action) {
         } ;
 
         if(array_key_exists("courseid", $_POST)){
-            $$courseid = $_GET['courseid'];
+            $$courseid = $_POST['courseid'];
         } ;
         $result = register_course($studentid,$courseid)  ;
         echo $result ;
@@ -27,6 +27,7 @@ switch ($action) {
     break;
     default :
         echo json_encode($unathorized);
+        break;
     ;
 } ;
 
