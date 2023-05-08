@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_margin">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:text="Professor's Email Address:"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <EditText
+            android:id="@+id/emailAddress"
+            android:text=""
+            android:inputType="text"
+            android:hint="Enter email address"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="7dp">
+        <TextView
+            android:text="Email Subject:"
+            android:textColor="@color/black"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <EditText
+            android:id="@+id/emailSubject"
+            android:text=""
+            android:inputType="text"
+            android:hint="Enter email subject"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="7dp">
+        <TextView
+            android:text="Message:"
+            android:textColor="@color/black"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <EditText
+            android:id="@+id/emailMessage"
+            android:text=""
+            android:inputType="text"
+            android:hint="Enter email subject"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:paddingTop="50dp">
+        <Button
+            android:id="@+id/sendEmailButton"
+            android:text="Send Email"
+            android:height="80sp"
+            android:layout_marginBottom="30dp"
+            />
+    </TableRow>
+
+</TableLayout>
