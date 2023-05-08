@@ -88,10 +88,9 @@ class MainActivity : AppCompatActivity() {
             //Toast.makeText(this,"Student Logged In successfully" + student.toString(),Toast.LENGTH_SHORT).show()
             // show a dashboard for the student
             LOGGED_IN_STUDENT = student
+            StudentDashboardActivity.LOGGED_IN_STUDENT = student
             var myIntent : Intent = Intent( this, StudentDashboardActivity::class.java )
             startActivity( myIntent )
-
-            // V3
             overridePendingTransition( R.anim.slide_from_left, 0 )
 
         } catch ( e : Exception) {

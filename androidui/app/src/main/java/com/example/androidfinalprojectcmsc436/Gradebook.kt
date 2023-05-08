@@ -5,24 +5,31 @@ class Gradebook {
     private val classes = arrayOf("CMSC131", "CMSC132", "CMSC216", "CMSC250", "CMSC330", "CMSC351", "CMSC412", "CMSC420", "CMSC430", "CMSC433", "CMSC436", "CMSC451", "CMSC456")
 
     constructor( ) {
-
+        courses  = Backend().get_all_courses_from_database()
+        courseIDs = Array<String>(courses.size, {i -> courses.get(i).courseid})
     }
 
     fun getCourses( ) : Array<String> {
-        var courses = getAllCourseObjects()
-        var dbclasses : Array<String> = courses.toArray() as Array<String>
-
-        return dbclasses
+        if (courseIDs == null ) {
+            var c : ArrayList<Course> = getAllCourseObjects()
+            courseIDs = Array<String>(c.size, {i -> c.get(i).courseid})
+        }
+        return courseIDs
     }
 
     fun getAllCourseObjects() : ArrayList<Course> {
-        var courses : ArrayList<Course> = Backend().get_all_courses_from_database()
-        return Backend().get_all_courses_from_database()
+        if ( courses == null )
+            courses  = Backend().get_all_courses_from_database()
+        return courses
     }
 
     fun setCourses( ) : Unit {
 
     }
 
+    companion object {
+        lateinit var courses : ArrayList<Course>
+        lateinit var courseIDs : Array<String>
+    }
 
 }

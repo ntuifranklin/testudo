@@ -1,5 +1,4 @@
 package com.example.androidfinalprojectcmsc436
-
 import android.util.Log
 import android.widget.EditText
 

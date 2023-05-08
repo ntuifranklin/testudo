@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 05, 2023 at 06:40 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Host: localhost:3306
+-- Generation Time: May 08, 2023 at 05:31 PM
+-- Server version: 10.3.38-MariaDB
+-- PHP Version: 8.1.16
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -15,15 +15,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `fnkokamn_terpdb`
 --
-CREATE DATABASE IF NOT EXISTS `fnkokamn_terpdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `fnkokamn_terpdb`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `ASSIGNMENT`
 --
--- Creation: May 05, 2023 at 04:38 PM
+-- Creation: May 05, 2023 at 04:42 PM
 --
 
 DROP TABLE IF EXISTS `ASSIGNMENT`;
@@ -37,10 +35,6 @@ CREATE TABLE IF NOT EXISTS `ASSIGNMENT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- RELATIONSHIPS FOR TABLE `ASSIGNMENT`:
---
-
---
 -- Truncate table before insert `ASSIGNMENT`
 --
 
@@ -50,8 +44,8 @@ TRUNCATE TABLE `ASSIGNMENT`;
 --
 -- Table structure for table `COURSE`
 --
--- Creation: May 05, 2023 at 04:38 PM
--- Last update: May 05, 2023 at 04:38 PM
+-- Creation: May 05, 2023 at 04:42 PM
+-- Last update: May 05, 2023 at 04:42 PM
 --
 
 DROP TABLE IF EXISTS `COURSE`;
@@ -63,10 +57,6 @@ CREATE TABLE IF NOT EXISTS `COURSE` (
   `CREDIT` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`CID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `COURSE`:
---
 
 --
 -- Truncate table before insert `COURSE`
@@ -94,10 +84,32 @@ INSERT INTO `COURSE` VALUES('CMSC456', 'Introduction to Cryptography', 'SPRING',
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ENROLLEDCOURSE`
+--
+-- Creation: May 08, 2023 at 09:28 PM
+--
+
+DROP TABLE IF EXISTS `ENROLLEDCOURSE`;
+CREATE TABLE IF NOT EXISTS `ENROLLEDCOURSE` (
+  `ENROLLMENTID` varchar(100) NOT NULL,
+  `CID` varchar(100) NOT NULL,
+  `STUDENTUID` varchar(100) NOT NULL,
+  `ENROLLDATE` date NOT NULL,
+  PRIMARY KEY (`ENROLLMENTID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Truncate table before insert `ENROLLEDCOURSE`
+--
+
+TRUNCATE TABLE `ENROLLEDCOURSE`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `STUDENT`
 --
--- Creation: May 05, 2023 at 04:38 PM
--- Last update: May 05, 2023 at 04:38 PM
+-- Creation: May 05, 2023 at 04:42 PM
+-- Last update: May 05, 2023 at 04:42 PM
 --
 
 DROP TABLE IF EXISTS `STUDENT`;
@@ -111,10 +123,6 @@ CREATE TABLE IF NOT EXISTS `STUDENT` (
   `LASTNAME` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `STUDENT`:
---
 
 --
 -- Truncate table before insert `STUDENT`
@@ -134,7 +142,7 @@ INSERT INTO `STUDENT` VALUES('7698560', 'jsilverman', 'sh3425', '2001-06-14', 'J
 --
 -- Table structure for table `STUDENTSUBMITSASSIGNMENT`
 --
--- Creation: May 05, 2023 at 04:38 PM
+-- Creation: May 05, 2023 at 04:42 PM
 --
 
 DROP TABLE IF EXISTS `STUDENTSUBMITSASSIGNMENT`;
@@ -147,10 +155,6 @@ CREATE TABLE IF NOT EXISTS `STUDENTSUBMITSASSIGNMENT` (
   `ASSIGNMENTGRADE` float NOT NULL,
   PRIMARY KEY (`SUBMISSIONID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- RELATIONSHIPS FOR TABLE `STUDENTSUBMITSASSIGNMENT`:
---
 
 --
 -- Truncate table before insert `STUDENTSUBMITSASSIGNMENT`

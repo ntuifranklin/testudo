@@ -18,45 +18,47 @@ class Backend {
     /* Returns a list of all courses in the database */
     fun get_all_courses_from_database() :ArrayList<Course> {
         var arrayListCourses : ArrayList<Course> = ArrayList<Course>()
+        try {
+            loginUrl = "$loginUrl?action=courses"
 
+            Log.w(MainActivity.MA,"Getting all courses from DB through url " + loginUrl)
+            var urlObject: URL = URL(loginUrl)
 
-        loginUrl = "$loginUrl?action=courses"
+            val iStream: InputStream = urlObject.openStream()
+            // read from input stream, accumulate into result
+            val scan: Scanner = Scanner(iStream)
+            var result: String  = ""
+            while (scan.hasNext())
+            {
+                result += scan.nextLine()
+            }
+            Log.w(MainActivity.MA,"Result from $loginUrl : " + result)
 
+            var array_of_courses : JSONArray = JSONArray(result)
+            for (i in 0 until array_of_courses.length()) {
 
-        var urlObject: URL = URL(loginUrl)
+                var courseObject : JSONObject = array_of_courses.optJSONObject(i)
+                var courseid : String = courseObject.getString("CID")
 
-        val iStream: InputStream = urlObject.openStream()
-        // read from input stream, accumulate into result
-        val scan: Scanner = Scanner(iStream)
-        var result: String  = ""
-        while (scan.hasNext())
-        {
-            result += scan.nextLine()
+                var coursetitle: String = courseObject.getString("COURSETITLE")
+                var semester : String = courseObject.getString("SEMESTER")
+                var year : String = courseObject.getString("YEAR")
+                var credit : Double = courseObject.getDouble("CREDIT")
+                var course : Course =
+                    Course (courseid,
+                        coursetitle,
+                        semester,
+                        year,
+                        credit
+                    )
+                arrayListCourses.add(course)
+            }
+
+            return arrayListCourses
+        } catch(e :JSONException) {
+            Log.w(MainActivity.MA, "There was an issue grabbing courses from the database")
+            return ArrayList<Course>()
         }
-        Log.w(MainActivity.MA,"Result from $loginUrl : " + result)
-
-        var array_of_courses : JSONArray = JSONArray(result)
-        for (i in 0..array_of_courses.length()) {
-
-            var courseObject : JSONObject = array_of_courses.optJSONObject(i)
-            var courseid : String = courseObject.getString("CID")
-
-            var coursetitle: String = courseObject.getString("COURSETITLE")
-            var semester : String = courseObject.getString("SEMESTER")
-            var year : String = courseObject.getString("YEAR")
-            var credit : Double = courseObject.getDouble("CREDIT")
-            var course : Course =
-                Course (courseid,
-                    coursetitle,
-                    semester,
-                    year,
-                    credit
-                )
-            arrayListCourses.add(course)
-        }
-
-
-        return arrayListCourses
     }
 
     /* Returns a list of all courses in the database */
