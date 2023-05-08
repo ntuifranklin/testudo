@@ -71,7 +71,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
     fun buildStudentDashboardMenuByCode( ) {
 
         regCourseButton = Button(this)
-        viewRegisCourseButton = DButton(this)
+        viewRegisCourseButton = Button(this)
         viewGrades = Button(this)
         goBackButton = Button(this)
 
@@ -151,38 +151,9 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
             getCoursesThreadTask = GetCoursesListThread(this)
             getCoursesThreadTask.start()
 
-            goToRegisterClasses(regCourseButton)
         } else if (v != null && v == viewGrades) {
             goToViewGrades(viewGrades)
 
-        }
-    }
-
-    inner class DButton : AppCompatButton {
-        constructor(context: Context) : super(context) {
-            init()
-        }
-
-        constructor(
-            context: Context,
-            attrs: AttributeSet?
-        ) : super(context, attrs) {
-            init()
-        }
-
-        constructor(
-            context: Context,
-            attrs: AttributeSet?,
-            defStyleAttr: Int
-        ) : super(context, attrs, defStyleAttr) {
-            init()
-        }
-
-        private fun init() {
-
-            setBackgroundColor(ContextCompat.getColor(context,R.color.purple_700))
-            this.width = bw
-            this.height = bh
         }
     }
 

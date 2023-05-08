@@ -20,7 +20,7 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var gradebook: Gradebook
     private lateinit var courses: Array<String>
     private lateinit var courseOptions : ArrayList<CheckBox>
-
+    lateinit var registerCourseThread: PostRegisterCourseThread
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,10 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
 
         courses = StudentDashboardActivity.ALL_COURSE_CODES
         addCoursesGUI( )
+    }
+
+    fun showCourseRegistersuccess() {
+        Log.w(MainActivity.MA, "You registered for all courses successfully")
     }
 
     fun addCoursesGUI() : Unit {
@@ -113,7 +117,9 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
                 for ( courseOption in courseOptions) {
                     if (courseOption.isChecked)
                         Log.w(MainActivity.MA,"Checked Course ID value : " + courseOption.text)
-                    //post into register classes the students registered classses
+                    //need student id and all the course ids
+                    var studentId : String = StudentDashboardActivity.LOGGED_IN_STUDENT.getUid()
+                    registerCourseThread = PostRegisterCourseThread(this, studentId, )
                 }
             } else {
                 Log.w(MainActivity.MA, "All checkboxes null for now")
