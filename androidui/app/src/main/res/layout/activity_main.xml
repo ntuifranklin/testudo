@@ -61,7 +61,7 @@
             android:id="@+id/login_button"
             android:text="@string/login_button_label"
             android:height="120dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="0dp"
 
              />
     </TableRow>
@@ -70,9 +70,25 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:gravity="center"
-        android:layout_marginTop="180dp"
+        android:paddingTop="50dp"
+        android:layout_marginLeft="@dimen/activity_left_margin">
+        <Button
+            android:id="@+id/sign_up_button"
+            android:text="@string/sign_up_label"
+            android:height="120dp"
+            android:layout_marginBottom="30dp"
+
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="@dimen/activity_left_margin"
         android:id="@+id/ad" >
     </TableRow>
+
 
 </TableLayout>

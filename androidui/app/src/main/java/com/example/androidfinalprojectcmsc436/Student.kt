@@ -9,6 +9,7 @@ class Student {
     private var middlename : String = ""
     private var lastname : String = ""
 
+    //May want to make a default construtor as will so that students can be added to the database without needing to be signed in
     constructor(uid: String,
                 username: String,
                 password: String,
@@ -78,6 +79,10 @@ class Student {
 
     fun setLastName(lastname: String) {
         this.lastname = lastname
+    }
+
+    fun addStudentToDatabase(firstname: String, middlename: String, lastname: String, UID : String, DOB : String, username: String, password: String) : Unit {
+        //TODO, add user data from the sign up screen to the database
     }
 
     override fun toString(): String {

@@ -28,12 +28,27 @@
     <string name="login_name_label">USERNAME : </string>
     <string name="password_label">PASSWORD : </string>
     <string name="login_button_label">LOGIN</string>
+    <string name="sign_up_label">SIGN UP</string>
+    <string name="username_label">USERNAME : </string>
+    <string name="firstname_label">FIRST NAME : </string>
+    <string name="middleInitial_label">MIDDLE INITIAL : </string>
+    <string name="UID_label">UID : </string>
+    <string name="DOB_label">BIRTHDAY : </string>
+    <string name="lastname_label">LAST NAME : </string>
+
 
     <string name="student_success_logged_in">You Successfully Logged In</string>
     <!--  some Place Holders  -->
 
     <string name="login_name_placeholder">Enter Username</string>
     <string name="password_text_placeholder">Enter Password</string>
+    <string name="username_placeholder">Enter Username </string>
+    <string name="firstname_placeholder">Enter Firstname </string>
+    <string name="middleInitial_placeholder">Enter Middle Initial </string>
+    <string name="UID_placeholder">Enter UID</string>
+    <string name="DOB_placeholder">Enter Birthday (YYYY-MM-DD)</string>
+    <string name="lastname_placeholder">Enter Lastname</string>
+
 
     <!--  Student Dashboard Strings Titles -->
     <string name="dashboard_register_course">Register For A Course</string>

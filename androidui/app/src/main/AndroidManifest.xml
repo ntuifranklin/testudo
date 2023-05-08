@@ -33,6 +33,8 @@
             android:value="ca-app-pub-3940256099942544~3347511713"
             />
 
+        <activity android:name=".SignUpActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".StudentDashboardActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".RegisterClassesActivity"
