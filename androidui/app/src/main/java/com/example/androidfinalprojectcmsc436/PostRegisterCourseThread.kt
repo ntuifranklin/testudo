@@ -1,17 +1,18 @@
 package com.example.androidfinalprojectcmsc436
-import android.content.Intent
 import android.util.Log
-import android.content.Context
 
-
-class GetCoursesListThread : Thread {
-    private lateinit var studentDashboardTaskActivity : StudentDashboardActivity
+class PostRegisterCourseThread : Thread {
+    private lateinit var registerCourseTaskActivity : RegisterClassesActivity
     private var result : String = "not set yet"
     private lateinit var courses : ArrayList<Course>
     private lateinit var coursesAsStrings : Array<String>
-    var loginUrl : String = ""
-    constructor( activity : StudentDashboardActivity) {
-        this.studentDashboardTaskActivity = activity
+    private var studentUid : String = ""
+    private lateinit var courseIds : ArrayList<Course>
+    constructor( activity : RegisterClassesActivity, studentId:String, courses: ArrayList<Course>) {
+        this.registerCourseTaskActivity = activity
+        studentUid = studentId
+        courseIds = courses
+
 
     }
 
@@ -27,22 +28,21 @@ class GetCoursesListThread : Thread {
             courses = backend.get_all_courses_from_database()
             coursesAsStrings = Gradebook().getCourses()
 
-            var showcoursesListUI: ShowcoursesListUI = ShowcoursesListUI()
+            var showRegisteredcoursesListAlertBox: ShowRegisteredcoursesListAlertBox = ShowRegisteredcoursesListAlertBox()
             StudentDashboardActivity.ALL_COURSES = courses
             StudentDashboardActivity.ALL_COURSE_CODES = coursesAsStrings
-            studentDashboardTaskActivity.runOnUiThread(showcoursesListUI);
+            registerCourseTaskActivity.runOnUiThread(showRegisteredcoursesListAlertBox);
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception: " + e.message ) ;
 
-            studentDashboardTaskActivity.finish() ;
+            registerCourseTaskActivity.finish() ;
         }
     }
 
-    inner class ShowcoursesListUI : Runnable {
+    inner class ShowRegisteredcoursesListAlertBox : Runnable {
         override fun run() {
-           studentDashboardTaskActivity.goToRegisterClasses()
-
+            registerCourseTaskActivity.showCourseRegistersuccess()
         }
 
     }
