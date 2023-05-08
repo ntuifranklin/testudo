@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var usernameET : EditText
     lateinit var passwordET : EditText
     lateinit var loginButtonView : Button
-    lateinit var loginTask : AccessWebThreadTask
+    lateinit var loginTask : LogStudentByWebThreadTask
     var result: String = ""
     var loginUrl : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     fun checkUserLogin()  {
         //sending to thread task the username and password text
 
-        loginTask = AccessWebThreadTask( this, usernameET, passwordET )
+        loginTask = LogStudentByWebThreadTask( this, usernameET, passwordET )
         loginTask.start()
 
 
@@ -88,10 +88,9 @@ class MainActivity : AppCompatActivity() {
             //Toast.makeText(this,"Student Logged In successfully" + student.toString(),Toast.LENGTH_SHORT).show()
             // show a dashboard for the student
             LOGGED_IN_STUDENT = student
+            StudentDashboardActivity.LOGGED_IN_STUDENT = student
             var myIntent : Intent = Intent( this, StudentDashboardActivity::class.java )
             startActivity( myIntent )
-
-            // V3
             overridePendingTransition( R.anim.slide_from_left, 0 )
 
         } catch ( e : Exception) {
@@ -112,8 +111,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
-        const val SERVER_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
-        const val AWS_BASE_URL: String = "http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj//backend.php"
+        const val SERVER_BASE_URL: String = "http://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
+        const val AWS_BASE_URL: String = "http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php"
         const val MA : String =  "FinalProjectMainActivity"
         lateinit var LOGGED_IN_STUDENT : Student
     }
