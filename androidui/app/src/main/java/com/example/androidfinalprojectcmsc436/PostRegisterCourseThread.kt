@@ -6,11 +6,11 @@ class PostRegisterCourseThread : Thread {
     private var result : String = "not set yet"
     private lateinit var courses : ArrayList<Course>
     private lateinit var coursesAsStrings : Array<String>
-    private var studentUid : String = ""
-    private lateinit var courseIds : ArrayList<Course>
-    constructor( activity : RegisterClassesActivity, studentId:String, courses: ArrayList<Course>) {
+    private lateinit var student : Student
+    private lateinit var courseIds : ArrayList<String>
+    constructor( activity : RegisterClassesActivity, student:Student, courses: ArrayList<String>) {
         this.registerCourseTaskActivity = activity
-        studentUid = studentId
+        this.student = student
         courseIds = courses
 
 
@@ -25,13 +25,13 @@ class PostRegisterCourseThread : Thread {
         try {
 
             var backend : Backend = Backend()
-            courses = backend.get_all_courses_from_database()
-            coursesAsStrings = Gradebook().getCourses()
+            result = backend.post_registered_courses(student, courseIds)
 
-            var showRegisteredcoursesListAlertBox: ShowRegisteredcoursesListAlertBox = ShowRegisteredcoursesListAlertBox()
+            var showRegisteredCoursesListAlertBox: ShowRegisteredCoursesListAlertBox = ShowRegisteredCoursesListAlertBox()
             StudentDashboardActivity.ALL_COURSES = courses
             StudentDashboardActivity.ALL_COURSE_CODES = coursesAsStrings
-            registerCourseTaskActivity.runOnUiThread(showRegisteredcoursesListAlertBox);
+            registerCourseTaskActivity.runOnUiThread(showRegisteredCoursesListAlertBox)
+
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception: " + e.message ) ;
@@ -40,7 +40,7 @@ class PostRegisterCourseThread : Thread {
         }
     }
 
-    inner class ShowRegisteredcoursesListAlertBox : Runnable {
+    inner class ShowRegisteredCoursesListAlertBox : Runnable {
         override fun run() {
             registerCourseTaskActivity.showCourseRegistersuccess()
         }

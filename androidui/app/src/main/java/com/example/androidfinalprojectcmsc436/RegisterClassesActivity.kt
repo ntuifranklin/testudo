@@ -114,13 +114,18 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
         } else if (v != null && v == addButton) {
             //To be replaced with functionality for adding courses for the given student
             if (courseOptions != null ) {
+                var courses: ArrayList<String> = ArrayList<String>()
                 for ( courseOption in courseOptions) {
-                    if (courseOption.isChecked)
+                    if (courseOption.isChecked) {
                         Log.w(MainActivity.MA,"Checked Course ID value : " + courseOption.text)
-                    //need student id and all the course ids
-                    var studentId : String = StudentDashboardActivity.LOGGED_IN_STUDENT.getUid()
-                    registerCourseThread = PostRegisterCourseThread(this, studentId, )
+                        courses.add(courseOption.text.toString())
+                    }
                 }
+
+                //need student id and all the course ids
+                var studentId : String = StudentDashboardActivity.LOGGED_IN_STUDENT.getUid()
+                registerCourseThread = PostRegisterCourseThread(this, StudentDashboardActivity.LOGGED_IN_STUDENT, courses)
+                registerCourseThread.start()
             } else {
                 Log.w(MainActivity.MA, "All checkboxes null for now")
             }
@@ -136,5 +141,9 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
     fun goBack(v : View) : Unit {
         finish( )
         overridePendingTransition( R.anim.fade_in_and_scale, 0 )
+    }
+
+    companion object {
+        lateinit var registerErrorMessage : String
     }
 }
