@@ -1,7 +1,7 @@
 <?php
 
 require_once("./library.php") ;
-$unathorized = "{'result':'Unknown operation'}"
+$unathorized = "{'result':'Unknown operation'}";
 if(!array_key_exists("action", $_POST)) {
     die(json_encode($unathorized));
 } ;
