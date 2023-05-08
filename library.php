@@ -33,6 +33,23 @@ function get_student_infos($username='',$password='') {
     
 } ;
 
+function register_course($studentid='',$courseid='') {
+    $r = ""
+    $conn = connectdb();
+    $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, NOW()) ;");
+    $enrollid=  uniqid("$studentid.$courseid", true);
+    $stmt->bind_param("sss", $enrollid,$courseid,$studentid);
+    if ($stmt -> execute() ) {
+        $conn -> close();
+        $r = "{'$courseid':'success'}" ;
+    } else {
+        $r = "{'error':'Error registering $courseid for student $studentid'}";
+    }
+    
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+    
+} ;
+
 function get_all_students() {
     
     $conn = connectdb();

@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
+        const val SERVER_BASE_POST_URL: String = "http://s56.cmsc436-2301.cs.umd.edu/server/post.php"
         const val SERVER_BASE_URL: String = "http://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
         const val AWS_BASE_URL: String = "http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php"
         const val MA : String =  "FinalProjectMainActivity"

@@ -24,6 +24,7 @@ class Backend {
     fun get_all_courses_from_database() :ArrayList<Course> {
         var arrayListCourses : ArrayList<Course> = ArrayList<Course>()
         try {
+            loginUrl = MainActivity.SERVER_BASE_URL
             loginUrl = "$loginUrl?action=courses"
 
             Log.w(MainActivity.MA,"Getting all courses from DB through url " + loginUrl)
@@ -171,7 +172,7 @@ class Backend {
 
         try {
 
-
+            loginUrl = MainActivity.SERVER_BASE_URL
             loginUrl = "$loginUrl?action=user&username=$username"
             // now add password
             loginUrl = "$loginUrl&password=$password"
@@ -216,4 +217,38 @@ class Backend {
             return Student()
         }
     }
+     fun post_registered_courses(student: Student, courses: ArrayList<String>) : String {
+         loginUrl = MainActivity.SERVER_BASE_POST_URL
+         var result : String = ""
+         var errorMessage : String  = ""
+
+            for ( courseid in courses ) {
+                try {
+                    var s = "${courseid}"
+                    val url = URL(loginUrl)
+                    val postData : String = "?action=register_course&studentuid=${student.getUid()}&courseid=$courseid"
+                    val conn = url.openConnection() as HttpURLConnection
+                    conn.requestMethod = "POST"
+                    conn.doOutput = true
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+                    conn.setRequestProperty("Content-Length", postData.length.toString())
+                    conn.useCaches = false
+
+                    DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+                    BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
+                        var line: String?
+                        while (br.readLine().also { line = it } != null) {
+                            result += line
+                        }
+                    }
+                } catch( e: JSONException) {
+                    errorMessage += "{'error_message':'${e.message}'}"
+                }
+            }
+            if (errorMessage == "")
+                return result
+            else
+                return errorMessage
+
+     }
 }
