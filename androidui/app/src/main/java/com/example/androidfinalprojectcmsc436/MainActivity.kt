@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var usernameET : EditText
     lateinit var passwordET : EditText
     lateinit var loginButtonView : Button
+    lateinit var signUpButtonView : Button
     lateinit var loginTask : AccessWebThreadTask
     var result: String = ""
     var loginUrl : String = ""
@@ -36,7 +37,9 @@ class MainActivity : AppCompatActivity() {
         usernameET = findViewById(R.id.login_name)
         passwordET = findViewById(R.id.login_password)
         loginButtonView = findViewById(R.id.login_button)
+        signUpButtonView = findViewById(R.id.sign_up_button)
         loginButtonView.setOnClickListener(ButtonHandler())
+        signUpButtonView.setOnClickListener(ButtonHandler())
 
         createAd( )
     }
@@ -101,11 +104,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun goToSignUp( ) {
+        var signUpIntent : Intent = Intent( this, SignUpActivity::class.java )
+        startActivity( signUpIntent )
+    }
+
     inner class ButtonHandler : View.OnClickListener {
         override fun onClick(v: View?) {
-           if ( v == null )
-               return
+           if ( v != null && v == loginButtonView )
             checkUserLogin()
+           else if (v != null && v == signUpButtonView)
+               goToSignUp( )
         }
 
     }
