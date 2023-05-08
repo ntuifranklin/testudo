@@ -33,6 +33,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
     private var screenHeight : Int = 0
     private var screenWidth : Int = 0
     private lateinit var identityTV : TextView
+    private lateinit var getCoursesThreadTask : GetCoursesListThread
 
     private fun init () {
 
@@ -43,26 +44,18 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        /*
-        amountET = findViewById( R.id.data_amount )
-        rateET = findViewById( R.id.data_rate )
-        button10 = findViewById( R.id.ten )
-        button15 = findViewById( R.id.fifteen )
-        button30 = findViewById( R.id.thirty )
-         */
-
         screenWidth = Resources.getSystem( ).displayMetrics.widthPixels
         screenHeight = Resources.getSystem( ).displayMetrics.heightPixels
 
         bw = (screenWidth.toFloat()*0.7).toInt()
         bh = (screenHeight/10).toInt()
-        buildGuiByCode()
+        buildStudentDashboardMenuByCode()
     }
 
-    fun goToRegisterClasses( v : View) {
+    fun goToRegisterClasses() {
         var regClassesIntent : Intent = Intent( this, RegisterClassesActivity::class.java )
         startActivity( regClassesIntent )
+        overridePendingTransition( R.anim.slide_from_left, 0 )
     }
 
     fun goToViewGrades( v : View) {
@@ -75,7 +68,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         overridePendingTransition( R.anim.fade_in_and_scale, 0 )
     }
 
-    fun buildGuiByCode( ) {
+    fun buildStudentDashboardMenuByCode( ) {
 
         regCourseButton = Button(this)
         viewRegisCourseButton = DButton(this)
@@ -151,9 +144,17 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         if( v != null && v == goBackButton) {
             goBack(goBackButton)
         } else if (v != null && v == regCourseButton) {
+
+            //goToRegisterClasses(regCourseButton)
+            //start thread for getting courses from database
+            // then create ui for listing those courses
+            getCoursesThreadTask = GetCoursesListThread(this)
+            getCoursesThreadTask.start()
+
             goToRegisterClasses(regCourseButton)
         } else if (v != null && v == viewGrades) {
             goToViewGrades(viewGrades)
+
         }
     }
 
@@ -184,5 +185,17 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
             this.height = bh
         }
     }
+
+    companion object {
+        //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
+        const val SERVER_BASE_URL: String = "http://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
+        const val AWS_BASE_URL: String = "http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php"
+        const val MA : String =  "FinalProjectMainActivity"
+        lateinit var ALL_COURSES : ArrayList<Course>
+        lateinit var ALL_COURSE_CODES : Array<String>
+        lateinit var LOGGED_IN_STUDENT : Student
+
+    }
+
 
 }

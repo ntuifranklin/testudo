@@ -2,6 +2,7 @@ package com.example.androidfinalprojectcmsc436
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
@@ -17,21 +18,30 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var backButton : Button
     lateinit var addButton : Button
     lateinit var gradebook: Gradebook
+    private lateinit var courses: Array<String>
+    private lateinit var courseOptions : ArrayList<CheckBox>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_courses)
         title = findViewById(R.id.Title)
         relativeLayout = findViewById(R.id.relLay)
-        gradebook = Gradebook( )
+
+        courses = StudentDashboardActivity.ALL_COURSE_CODES
         addCoursesGUI( )
     }
 
     fun addCoursesGUI() : Unit {
 
+        if (courses == null )
+            return
+
         var courseIdMappings : HashMap<String, Int> = HashMap<String, Int>()
-        var courses = gradebook.getCourses()
+
         var currPosInArray : Int = 0
+        //initialize course options array list
+        courseOptions = ArrayList<CheckBox>()
         for (course in courses) {
             var courseRules : HashMap<Int, Int> = HashMap<Int, Int>()
             if (currPosInArray == 0) {
@@ -43,6 +53,7 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
 
             var courseParams : RelativeLayout.LayoutParams = setRelativeLayoutParams(courseRules)
             var courseOption : CheckBox = CheckBox(this)
+
             courseOption.text = course
             courseOption.textSize = 30f
             var courseId = View.generateViewId()
@@ -53,31 +64,31 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
             courseOption.layoutParams = courseParams
             relativeLayout.addView(courseOption)
             currPosInArray++
+            courseOptions.add(courseOption)
         }
-
-        var addCoursesButton : Button = Button(this)
-        addCoursesButton.text="Add Selected Course(s)"
+        addButton  = Button(this)
+        addButton.text="Add Selected Course(s)"
 
         var buttonRules : HashMap<Int, Int> = HashMap<Int, Int>()
         buttonRules[RelativeLayout.BELOW] = courseIdMappings[courses[courses.size-1]]!!
         var params : RelativeLayout.LayoutParams = setRelativeLayoutParams(buttonRules)
         params.topMargin = 30
 
-        addCoursesButton.layoutParams = params
+        addButton.layoutParams = params
 
-        var addCoursesId = View.generateViewId()
-        addCoursesButton.id = addCoursesId
 
-        addCoursesButton.setOnClickListener(this)
+        addButton.id = View.generateViewId()
 
-        addButton = addCoursesButton
+        addButton.setOnClickListener(this)
 
-        relativeLayout.addView(addCoursesButton)
+
+
+        relativeLayout.addView(addButton)
 
         var goBackButton : Button = Button(this)
         goBackButton.text="Go Back"
 
-        buttonRules[RelativeLayout.BELOW] = addCoursesId
+        buttonRules[RelativeLayout.BELOW] = addButton.id
         params = setRelativeLayoutParams(buttonRules)
         params.topMargin = 30
 
@@ -98,7 +109,15 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
             goBack(backButton)
         } else if (v != null && v == addButton) {
             //To be replaced with functionality for adding courses for the given student
-            goBack(addButton)
+            if (courseOptions != null ) {
+                for ( courseOption in courseOptions) {
+                    if (courseOption.isChecked)
+                        Log.w(MainActivity.MA,"Checked Course ID value : " + courseOption.text)
+                    //post into register classes the students registered classses
+                }
+            } else {
+                Log.w(MainActivity.MA, "All checkboxes null for now")
+            }
         }
     }
 
@@ -110,5 +129,6 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
 
     fun goBack(v : View) : Unit {
         finish( )
+        overridePendingTransition( R.anim.fade_in_and_scale, 0 )
     }
 }

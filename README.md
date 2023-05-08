@@ -88,11 +88,11 @@ The examples below use an aws free instance running at [`https://s56.cmsc436-230
 
 Example of backedn call actions (value that the URL_LINK in android is supposed to take) :
 - List all students 
- [https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getusers](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getusers).  
+ [https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=users](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=users).  
  This should produce a screen shot that looks like the image below : 
  ![All students image](./imgs/allstudents.png).  
 - List one student
-[https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getuser&username=mfisher&password=fhsgd](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=getuser&username=mfisher&password=fhsgd).  
+[https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=user&username=mfisher&password=fhsgd](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=user&username=mfisher&password=fhsgd).  
  ![List one student](./imgs/onestudent.png)
 - List a Course  
 Need the `courseid` and `coursetitle` parameters in the url:  

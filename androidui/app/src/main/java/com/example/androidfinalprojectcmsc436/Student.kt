@@ -27,6 +27,12 @@ class Student {
         this.lastname = lastname
     }
 
+    /* Overloading constructor*/
+    constructor(
+    ) : this("","","","","","","") {
+
+    }
+
     fun getUid() : String {
         return this.uid
     }
