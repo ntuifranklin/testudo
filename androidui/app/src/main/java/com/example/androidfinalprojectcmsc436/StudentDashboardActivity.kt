@@ -159,8 +159,8 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
-        const val SERVER_BASE_URL: String = "http://s56.cmsc436-2301.cs.umd.edu/server/backend.php"
-        const val AWS_BASE_URL: String = "http://ec2-54-196-236-197.compute-1.amazonaws.com/cmsc436grproj/backend.php"
+        const val SERVER_BASE_URL: String = MainActivity.SERVER_BASE_URL
+        const val AWS_BASE_URL: String = MainActivity.AWS_BASE_URL
         const val MA : String =  "FinalProjectMainActivity"
         lateinit var ALL_COURSES : ArrayList<Course>
         lateinit var ALL_COURSE_CODES : Array<String>
