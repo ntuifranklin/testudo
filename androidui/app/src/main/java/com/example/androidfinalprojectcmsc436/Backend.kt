@@ -11,6 +11,7 @@ import kotlin.collections.ArrayList
 import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.InputStreamReader
+import java.io.OutputStream
 import java.net.HttpURLConnection
 
 
@@ -220,12 +221,12 @@ class Backend {
      fun post_registered_courses(student: Student, courses: ArrayList<String>) : String {
         loginUrl = MainActivity.SERVER_BASE_POST_URL
         var result : String = "["
-
+        var s = ""
         var errorMessage : String  = "["
         var i: Int = 0
         for ( courseid in courses ) {
             try {
-                var s = ""
+                s = ""
                 val url = URL(loginUrl)
                 val postData : String = "name=register_course&studentuid=${student.getUid()}&courseid=${courseid}"
                 Log.w(MainActivity.MA,postData)
@@ -237,12 +238,22 @@ class Backend {
                 conn.useCaches = false
 
                 DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+                /*
                 BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
                     var line: String?
                     while (br.readLine().also { line = it } != null) {
                         s += line
                         Log.w(MainActivity.MA,""+line)
                     }
+                }
+                */
+
+                val iStream : InputStream = conn.inputStream
+                val scan: Scanner = Scanner(iStream)
+
+                while (scan.hasNext())
+                {
+                    s += scan.nextLine()
                 }
                 if (i == 0)
                     result += s
@@ -253,7 +264,7 @@ class Backend {
             }
             i += 1
         }
-        return if (errorMessage == "")
+        return if (errorMessage == "[")
          result + "]"
         else
          errorMessage + "]"
