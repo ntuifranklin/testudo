@@ -37,7 +37,7 @@ function register_course($studentuid='',$courseid='') {
     $r = "";
     $conn = connectdb();
     $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, ?) ;");
-    $enrollid = uniqid("$studentuid.$courseid", true);
+    $enrollid = uniqid("$studentuid"."_"."$courseid", true);
     $now = new DateTime('now', new DateTimeZone('America/New_York'));
     $stmt->bind_param("ssss", $enrollid,$courseid,$studentuid, $now->format('Y-m-d H:i:s'));
     try{
