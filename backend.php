@@ -31,6 +31,19 @@ switch ($action) {
     case 'courses':{
         echo get_all_courses();
     } ; break ;
+
+    case 'studentcourses':{
+        
+        $studentuid = "" ;
+        
+        if(array_key_exists("studentuid", $_GET)){
+            $studentuid = $_GET['studentuid'];
+        } ;
+        
+        $result = get_student_registered_courses($studentuid);
+        echo $result;
+    } ; break ;
+
     case 'course':{
         
         $courseid = "" ;

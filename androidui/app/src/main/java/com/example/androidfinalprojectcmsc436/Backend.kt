@@ -270,4 +270,54 @@ class Backend {
          errorMessage + "]"
 
      }
+
+    fun get_registered_courses(studentuid: String) : ArrayList<String> {
+        loginUrl = MainActivity.SERVER_BASE_URL
+
+        try {
+
+            loginUrl = MainActivity.SERVER_BASE_URL
+            loginUrl = "$loginUrl?action=studentcourses&studentuid=$studentuid"
+
+            Log.w(MainActivity.MA, "Accessing login URL : " + loginUrl)
+
+            var urlObject: URL = URL(loginUrl)
+
+            val iStream: InputStream = urlObject.openStream()
+            // read from input stream, accumulate into result
+            val scan: Scanner = Scanner(iStream)
+            var result = ""
+            while (scan.hasNext())
+            {
+                result += scan.nextLine()
+            }
+
+            Log.w(MainActivity.MA,"Result from $loginUrl : " + result)
+            var d : JSONArray = JSONArray(result)
+
+            var jsa : JSONObject = d.optJSONObject(0)
+            var uid : String = jsa.getString("UID")
+            var username = jsa.getString("USERNAME")
+            var password = jsa.getString("PASSWORD")
+            var dob : String = jsa.getString("DOB")
+            var firstname : String = jsa.getString("FIRSTNAME")
+            var middlename : String = jsa.getString("MIDDLENAME")
+            var lastname : String = jsa.getString("LASTNAME")
+            var student =
+                Student(uid,
+                    username,
+                    password,
+                    dob,
+                    firstname,
+                    middlename,
+                    lastname
+                )
+
+
+
+        } catch(e : JSONException) {
+           
+        }
+        return ArrayList<String>()
+    }
 }
