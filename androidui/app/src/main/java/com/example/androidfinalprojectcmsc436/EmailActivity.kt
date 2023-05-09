@@ -1,10 +1,12 @@
 package com.example.androidfinalprojectcmsc436
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import javax.security.auth.Subject
 
 class EmailActivity : AppCompatActivity(), View.OnClickListener {
@@ -25,7 +27,6 @@ class EmailActivity : AppCompatActivity(), View.OnClickListener {
         emailAddressET = findViewById(R.id.emailAddress)
         emailSubjectET = findViewById(R.id.emailSubject)
         emailMessageET = findViewById(R.id.emailMessage)
-        gradebook = Gradebook()
     }
 
     override fun onClick(v: View?) {
@@ -35,7 +36,17 @@ class EmailActivity : AppCompatActivity(), View.OnClickListener {
             var emailSubject : String = emailSubjectET.text.toString()
             var emailMessage : String = emailMessageET.text.toString()
 
-            gradebook.sendEmail(this, emailSubject, emailAddress, emailMessage)
+            var emailIntent : Intent = Intent(Intent.ACTION_SEND)
+            emailIntent.type = "text/plain"
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject)
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress)
+            emailIntent.putExtra(Intent.EXTRA_TEXT, emailMessage)
+
+            ContextCompat.startActivity(
+                this,
+                Intent.createChooser(emailIntent, "Email your professor"),
+                null
+            )
         }
     }
 }

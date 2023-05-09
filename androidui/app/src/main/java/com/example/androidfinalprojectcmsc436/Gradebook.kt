@@ -37,15 +37,6 @@ class Gradebook {
         lateinit var courseIDs : Array<String>
     }
 
-    fun sendEmail(context : Context, subject : String, emailAddress : String, message : String) : Unit {
-        var emailIntent : Intent = Intent(Intent.ACTION_SEND)
-        emailIntent.type = "text/plain"
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress)
-        emailIntent.putExtra(Intent.EXTRA_TEXT, message)
-
-        startActivity(context, Intent.createChooser(emailIntent, "Email your professor"), null)
-    }
 
 
 
