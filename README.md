@@ -1,11 +1,8 @@
-# cmsc436grproj  
+# Turtledo
+Turtledo is an [`android`](https://developer.android.com/studio) app that enables a student to register for a course at the [`University of Maryland`](https://www.umd.edu).  
 
 <img src='./imgs/banner.gif'>  
 
-# CMSC436 Group Final Project
-Welcome to our Final Project for CMSC436 Spring 2023.
-This project is supposed to be private, and not visible unless logged into github, and also a member of this repo.
-Please email one of the contributors below if this project is public
 
 # setup
 ## First setup password less authentication with github  
