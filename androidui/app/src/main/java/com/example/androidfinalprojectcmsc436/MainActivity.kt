@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
     fun checkUserLogin()  {
         //sending to thread task the username and password text
-
+        Log.w("gloria","testing")
         loginTask = LogStudentByWebThreadTask( this, usernameET, passwordET )
         loginTask.start()
 
