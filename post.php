@@ -2,10 +2,10 @@
 error_reporting(E_ALL);
 require_once("./library.php") ;
 $unathorized = "{'result':'Unknown operation'}";
-if(!array_key_exists("action", $_POST)) {
+if(!array_key_exists("name", $_POST)) {
     die(json_encode($unathorized));
 } ;
-$action = $_POST['action'];
+$action = $_POST['name'];
 $action = strtolower($action);
 switch ($action) {
     case 'register_course':{

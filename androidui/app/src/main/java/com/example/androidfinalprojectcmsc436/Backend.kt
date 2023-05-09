@@ -218,37 +218,45 @@ class Backend {
         }
     }
      fun post_registered_courses(student: Student, courses: ArrayList<String>) : String {
-         loginUrl = MainActivity.SERVER_BASE_POST_URL
-         var result : String = ""
-         var errorMessage : String  = ""
+        loginUrl = MainActivity.SERVER_BASE_POST_URL
+        var result : String = "["
 
-            for ( courseid in courses ) {
-                try {
-                    var s = "${courseid}"
-                    val url = URL(loginUrl)
-                    val postData : String = "?action=register_course&studentuid=${student.getUid()}&courseid=$courseid"
-                    val conn = url.openConnection() as HttpURLConnection
-                    conn.requestMethod = "POST"
-                    conn.doOutput = true
-                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
-                    conn.setRequestProperty("Content-Length", postData.length.toString())
-                    conn.useCaches = false
+        var errorMessage : String  = "["
+        var i: Int = 0
+        for ( courseid in courses ) {
+            try {
+                var s = ""
+                val url = URL(loginUrl)
+                val postData : String = "name=register_course&studentuid=${student.getUid()}&courseid=$courseid"
+                Log.w(MainActivity.MA,postData)
+                val conn = url.openConnection() as HttpURLConnection
+                conn.requestMethod = "POST"
+                conn.doOutput = true
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+                conn.setRequestProperty("Content-Length", postData.length.toString())
+                conn.useCaches = false
 
-                    DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
-                    BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
-                        var line: String?
-                        while (br.readLine().also { line = it } != null) {
-                            result += line
-                        }
+                DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+                BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
+                    var line: String?
+                    while (br.readLine().also { line = it } != null) {
+                        s += line
+                        Log.w(MainActivity.MA,""+line)
                     }
-                } catch( e: JSONException) {
-                    errorMessage += "{'error_message':'${e.message}'}"
                 }
+                if (i == 0)
+                    result += s
+                else
+                    result += ", " + s
+            } catch( e: JSONException) {
+                errorMessage += "{'error_message':'${e.message}'},"
             }
-            if (errorMessage == "")
-                return result
-            else
-                return errorMessage
+            i += 1
+        }
+        return if (errorMessage == "")
+         result + "]"
+        else
+         errorMessage + "]"
 
      }
 }

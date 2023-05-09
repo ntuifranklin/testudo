@@ -32,8 +32,8 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
         addCoursesGUI( )
     }
 
-    fun showCourseRegistersuccess() {
-        Log.w(MainActivity.MA, "You registered for all courses successfully")
+    fun showCourseRegistersuccess(s:String) {
+        Log.w(MainActivity.MA, "Result From Registereation : " +s)
     }
 
     fun addCoursesGUI() : Unit {
@@ -114,17 +114,17 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
         } else if (v != null && v == addButton) {
             //To be replaced with functionality for adding courses for the given student
             if (courseOptions != null ) {
-                var courses: ArrayList<String> = ArrayList<String>()
+                var coursesR: ArrayList<String> = ArrayList<String>()
                 for ( courseOption in courseOptions) {
                     if (courseOption.isChecked) {
                         Log.w(MainActivity.MA,"Checked Course ID value : " + courseOption.text)
-                        courses.add(courseOption.text.toString())
+                        coursesR.add(courseOption.text.toString())
                     }
                 }
 
                 //need student id and all the course ids
                 var studentId : String = StudentDashboardActivity.LOGGED_IN_STUDENT.getUid()
-                registerCourseThread = PostRegisterCourseThread(this, StudentDashboardActivity.LOGGED_IN_STUDENT, courses)
+                registerCourseThread = PostRegisterCourseThread(this, StudentDashboardActivity.LOGGED_IN_STUDENT, coursesR)
                 registerCourseThread.start()
             } else {
                 Log.w(MainActivity.MA, "All checkboxes null for now")

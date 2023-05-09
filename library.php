@@ -37,7 +37,7 @@ function register_course($studentid='',$courseid='') {
     $r = "";
     $conn = connectdb();
     $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, NOW()) ;");
-    $enrollid=  uniqid("$studentid.$courseid", true);
+    $enrollid = uniqid("$studentid.$courseid", true);
     $stmt->bind_param("sss", $enrollid,$courseid,$studentid);
     if ($stmt -> execute() ) {
         $conn -> close();

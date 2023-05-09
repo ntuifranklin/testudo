@@ -28,13 +28,12 @@ class PostRegisterCourseThread : Thread {
             result = backend.post_registered_courses(student, courseIds)
 
             var showRegisteredCoursesListAlertBox: ShowRegisteredCoursesListAlertBox = ShowRegisteredCoursesListAlertBox()
-            StudentDashboardActivity.ALL_COURSES = courses
-            StudentDashboardActivity.ALL_COURSE_CODES = coursesAsStrings
             registerCourseTaskActivity.runOnUiThread(showRegisteredCoursesListAlertBox)
 
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception: " + e.message ) ;
+            Log.w(MainActivity.MA, " : " + e ) ;
 
             registerCourseTaskActivity.finish() ;
         }
@@ -42,7 +41,7 @@ class PostRegisterCourseThread : Thread {
 
     inner class ShowRegisteredCoursesListAlertBox : Runnable {
         override fun run() {
-            registerCourseTaskActivity.showCourseRegistersuccess()
+            registerCourseTaskActivity.showCourseRegistersuccess(result)
         }
 
     }
