@@ -273,7 +273,7 @@ class Backend {
 
     fun get_registered_courses(studentuid: String) : ArrayList<String> {
         loginUrl = MainActivity.SERVER_BASE_URL
-
+        var enrollCourses: ArrayList<String> = ArrayList<String>()
         try {
 
             loginUrl = MainActivity.SERVER_BASE_URL
@@ -294,30 +294,19 @@ class Backend {
 
             Log.w(MainActivity.MA,"Result from $loginUrl : " + result)
             var d : JSONArray = JSONArray(result)
+            for (i in 0 until d.length()) {
 
-            var jsa : JSONObject = d.optJSONObject(0)
-            var uid : String = jsa.getString("UID")
-            var username = jsa.getString("USERNAME")
-            var password = jsa.getString("PASSWORD")
-            var dob : String = jsa.getString("DOB")
-            var firstname : String = jsa.getString("FIRSTNAME")
-            var middlename : String = jsa.getString("MIDDLENAME")
-            var lastname : String = jsa.getString("LASTNAME")
-            var student =
-                Student(uid,
-                    username,
-                    password,
-                    dob,
-                    firstname,
-                    middlename,
-                    lastname
-                )
+                var jsa : JSONObject = d.optJSONObject(i)
+                var cid : String = jsa.getString("CID")
+                enrollCourses.add(cid)
+
+            }
 
 
 
         } catch(e : JSONException) {
-           
+
         }
-        return ArrayList<String>()
+        return enrollCourses
     }
 }

@@ -41,7 +41,7 @@ class PostRegisterCourseThread : Thread {
 
     inner class ShowRegisteredCoursesListAlertBox : Runnable {
         override fun run() {
-            registerCourseTaskActivity.showCourseRegistersuccess(result)
+            registerCourseTaskActivity.showCourseRegistersuccess(result, registerCourseTaskActivity)
         }
 
     }
