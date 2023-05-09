@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 
 class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
@@ -35,23 +36,27 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
         /*
         * ["{'courseid':'CMSC430','status':'success'}"]
         * */
-        Log.w(MainActivity.MA, "Result From Registereation : " +s)
+        Log.w(MainActivity.MA, "Result From Registeration : " +s)
+        try {
 
-        var d : JSONArray = JSONArray(s)
-        var message = ""
-        for (i in 0 until d.length()) {
+            var d : JSONArray = JSONArray(s)
+            var message = ""
+            for (i in 0 until d.length()) {
 
-            var jsa : JSONObject = d.optJSONObject(i)
-            var courseid : String = jsa.getString("COURSEID")
-            var status = jsa.getString("STATUS")
-            var error = jsa.getString("ERROR")
-            message += "\nStatus For $courseid: $status\n\tError: $error"
+                var jsa : JSONObject = d.optJSONObject(i)
+                var courseid : String = jsa.getString("COURSEID")
+                var status = jsa.getString("STATUS")
+                var error = jsa.getString("ERROR")
+                message += "\nStatus For $courseid: $status\n\tError: $error"
 
+
+            }
+            Toast.makeText(this,message,Toast.LENGTH_SHORT)
+            goBack(backButton)
+
+        } catch(e : JSONException) {
 
         }
-        Toast.makeText(this,message,Toast.LENGTH_SHORT)
-        goBack(backButton)
-
 
     }
 
