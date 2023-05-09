@@ -5,11 +5,10 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONArray
+import org.json.JSONObject
 
 class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -33,7 +32,27 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun showCourseRegistersuccess(s:String) {
+        /*
+        * ["{'courseid':'CMSC430','status':'success'}"]
+        * */
         Log.w(MainActivity.MA, "Result From Registereation : " +s)
+
+        var d : JSONArray = JSONArray(s)
+        var message = ""
+        for (i in 0 until d.length()) {
+
+            var jsa : JSONObject = d.optJSONObject(i)
+            var courseid : String = jsa.getString("COURSEID")
+            var status = jsa.getString("STATUS")
+            var error = jsa.getString("ERROR")
+            message += "\nStatus For $courseid: $status\n\tError: $error"
+
+
+        }
+        Toast.makeText(this,message,Toast.LENGTH_SHORT)
+        goBack(backButton)
+
+
     }
 
     fun addCoursesGUI() : Unit {
