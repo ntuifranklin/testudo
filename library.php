@@ -33,13 +33,13 @@ function get_student_infos($username='',$password='') {
     
 } ;
 
-function register_course($studentid='',$courseid='') {
+function register_course($studentuid='',$courseid='') {
     $r = "";
     $conn = connectdb();
     $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, ?) ;");
-    $enrollid = uniqid("$studentid.$courseid", true);
+    $enrollid = uniqid("$studentuid.$courseid", true);
     $now = new DateTime('now', new DateTimeZone('America/New_York'));
-    $stmt->bind_param("ssss", $enrollid,$courseid,$studentid, $now->format('Y-m-d H:i:s'));
+    $stmt->bind_param("ssss", $enrollid,$courseid,$studentuid, $now->format('Y-m-d H:i:s'));
     try{
 
         
