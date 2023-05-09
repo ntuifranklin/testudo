@@ -115,7 +115,10 @@ Need the `courseid` and `coursetitle` parameters in the url:
 # Potential Errors  
 When you `git fetch` or `git pull` from the main branch, the newly added google ad code might  
 not work if you did not rebuild after addition of google ad api key. To fix :
-- [Stack Overflow Issue here](https://stackoverflow.com/questions/52458939/can-not-resolve-com-google-android-gms-ads-mobileads)
+- [Stack Overflow Issue here](https://stackoverflow.com/questions/52458939/can-not-resolve-com-google-android-gms-ads-mobileads).  
+Sometimes `s#.*.cs.umd.edu` might not work. In `MainActivity.kt` file, in the companion object section, activate the AWS urls  :
+[http://ec2-54-196-231-193.compute-1.amazonaws.com/cmsc436grproj/](http://ec2-54-196-231-193.compute-1.amazonaws.com/cmsc436grproj/)
+by commenting or un commenting the appropriate urls
 # References
 
 - [Generate a new ssh key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
