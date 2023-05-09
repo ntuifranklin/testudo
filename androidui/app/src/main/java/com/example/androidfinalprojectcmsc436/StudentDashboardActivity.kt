@@ -154,6 +154,9 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         } else if (v != null && v == viewGrades) {
             goToViewGrades(viewGrades)
 
+        } else if (v != null && v == viewRegisCourseButton) {
+
+
         }
     }
 
