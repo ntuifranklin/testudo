@@ -1,5 +1,7 @@
 package com.example.androidfinalprojectcmsc436
 
+import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -21,7 +23,15 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var courses: Array<String>
     private lateinit var courseOptions : ArrayList<CheckBox>
     lateinit var registerCourseThread: PostRegisterCourseThread
+    private var screenHeight : Int = 0
+    private var screenWidth : Int = 0
 
+    private fun init () {
+
+        screenWidth = Resources.getSystem( ).displayMetrics.widthPixels
+        screenHeight = Resources.getSystem( ).displayMetrics.heightPixels
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_courses)
@@ -32,14 +42,14 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
         addCoursesGUI( )
     }
 
-    fun showCourseRegistersuccess(s:String) {
+    fun showCourseRegistersuccess(s:String, context: Context) {
         /*
         * ["{'courseid':'CMSC430','status':'success'}"]
         * */
         Log.w(MainActivity.MA, "Result From Registeration : " +s)
 
-        Toast.makeText(this,s,Toast.LENGTH_SHORT)
-        goBack(backButton)
+        Toast.makeText(context,s,Toast.LENGTH_LONG)
+        //goBack(backButton)
 
     }
 

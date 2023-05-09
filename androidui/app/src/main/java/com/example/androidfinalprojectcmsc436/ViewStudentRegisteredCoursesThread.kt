@@ -3,13 +3,15 @@ package com.example.androidfinalprojectcmsc436
 import android.util.Log
 
 class ViewStudentRegisteredCoursesThread : Thread {
-    private lateinit var studentDashboardTaskActivity : StudentDashboardActivity
+    private lateinit var studentDashboardActivity : StudentDashboardActivity
     private var result : String = "not set yet"
     private lateinit var courses : ArrayList<Course>
-    private lateinit var coursesAsStrings : Array<String>
+    private lateinit var coursesAsStrings : ArrayList<String>
+    var studentid : String = ""
     var loginUrl : String = ""
-    constructor( activity : StudentDashboardActivity) {
-        this.studentDashboardTaskActivity = activity
+    constructor( activity : StudentDashboardActivity, studentid: String) {
+        this.studentDashboardActivity = activity
+        this.studentid = studentid
 
     }
 
@@ -23,23 +25,21 @@ class ViewStudentRegisteredCoursesThread : Thread {
 
             var backend : Backend = Backend()
             courses = backend.get_all_courses_from_database()
-            coursesAsStrings = Gradebook().getCourses()
-
-            var showcoursesListUI: ShowcoursesListUI = ShowcoursesListUI()
-            StudentDashboardActivity.ALL_COURSES = courses
-            StudentDashboardActivity.ALL_COURSE_CODES = coursesAsStrings
-            studentDashboardTaskActivity.runOnUiThread(showcoursesListUI);
+            coursesAsStrings = backend.get_registered_courses(studentid)
+            var showRegcourses : ShowRegisteredCoursesListUI = ShowRegisteredCoursesListUI()
+            studentDashboardActivity.runOnUiThread(showRegcourses)
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception: " + e.message ) ;
 
-            studentDashboardTaskActivity.finish() ;
+            studentDashboardActivity.finish() ;
         }
     }
 
-    inner class ShowcoursesListUI : Runnable {
+    inner class ShowRegisteredCoursesListUI : Runnable {
         override fun run() {
-            studentDashboardTaskActivity.goToRegisterClasses()
+            studentDashboardActivity.viewRegisteredCoursesGUI(coursesAsStrings)
+            
 
         }
 
