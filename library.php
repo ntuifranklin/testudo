@@ -39,11 +39,16 @@ function register_course($studentid='',$courseid='') {
     $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, NOW()) ;");
     $enrollid = uniqid("$studentid.$courseid", true);
     $stmt->bind_param("sss", $enrollid,$courseid,$studentid);
-    if ($stmt -> execute() ) {
-        $conn -> close();
-        $r = "{'$courseid':'success'}" ;
-    } else {
-        $r = "{'error':'Error registering $courseid for student $studentid'}";
+    try{
+
+        
+        if ($stmt -> execute() ) {
+            $conn -> close();
+            $r = "{'$courseid':'success'}" ;
+        } 
+    } catch(Exception $e) {
+        $r = "{'error':'Error registering $courseid for student $studentid: $e'}";
+
     }
     
     return json_encode($r, JSON_PRETTY_PRINT) ;
