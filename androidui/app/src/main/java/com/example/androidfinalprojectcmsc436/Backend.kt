@@ -258,7 +258,7 @@ class Backend {
                 if (i == 0)
                     result += s
                 else
-                    result += ", " + s
+                    result += ',' + s
             } catch( e: JSONException) {
                 errorMessage += "{'error_message':'${e.message}'},"
             }

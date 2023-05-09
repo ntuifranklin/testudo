@@ -45,10 +45,11 @@ function register_course($studentuid='',$courseid='') {
         
         if ($stmt -> execute() ) {
             $conn -> close();
-            $r = "{'COURSEID':'$courseid', 'STATUS':'success','ERROR':''}" ;
+            $r = '{"COURSEID":"$courseid", "STATUS":"success","ERROR":""}' ;
         } 
     } catch(Exception $e) {
-        $r = "{'COURSEID':'$courseid', 'STATUS':'FAILURE','ERROR':'$e'}" ;
+        
+        $r = '{"COURSEID":"$courseid", "STATUS":"FAILURE","ERROR":"$e"}' ;
 
     }
     
