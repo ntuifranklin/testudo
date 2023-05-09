@@ -227,7 +227,7 @@ class Backend {
             try {
                 var s = ""
                 val url = URL(loginUrl)
-                val postData : String = "name=register_course&studentuid=${student.getUid()}&courseid=$courseid"
+                val postData : String = "name=register_course&studentuid=${student.getUid()}&courseid=${courseid}"
                 Log.w(MainActivity.MA,postData)
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "POST"

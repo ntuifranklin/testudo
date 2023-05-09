@@ -18,7 +18,7 @@ switch ($action) {
         } ;
 
         if(array_key_exists("courseid", $_POST)){
-            $$courseid = $_POST['courseid'];
+            $courseid = $_POST['courseid'];
         } ;
         $result = register_course($studentuid,$courseid)  ;
         echo $result ;
