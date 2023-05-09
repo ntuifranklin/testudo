@@ -36,9 +36,10 @@ function get_student_infos($username='',$password='') {
 function register_course($studentid='',$courseid='') {
     $r = "";
     $conn = connectdb();
-    $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, NOW()) ;");
+    $stmt = $conn->prepare("INSERT INTO ENROLLEDCOURSE VALUES (?, ?, ?, ?) ;");
     $enrollid = uniqid("$studentid.$courseid", true);
-    $stmt->bind_param("sss", $enrollid,$courseid,$studentid);
+    $now = new DateTime('now', new DateTimeZone('America/New_York'));
+    $stmt->bind_param("ssss", $enrollid,$courseid,$studentid, $now->format('Y-m-d H:i:s'));
     try{
 
         
