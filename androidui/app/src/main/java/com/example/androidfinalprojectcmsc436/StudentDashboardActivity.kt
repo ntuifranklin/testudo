@@ -7,6 +7,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
@@ -53,11 +54,19 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         bw = (screenWidth.toFloat()*0.7).toInt()
         bh = (screenHeight/10).toInt()
         buildStudentDashboardMenuByCode()
+        viewRegisteredCoursesTask = ViewStudentRegisteredCoursesThread(this, MainActivity.LOGGED_IN_STUDENT.getUid())
+        viewRegisteredCoursesTask.start()
     }
 
     fun goToRegisterClasses() {
         var regClassesIntent : Intent = Intent( this, RegisterClassesActivity::class.java )
         startActivity( regClassesIntent )
+        overridePendingTransition( R.anim.slide_from_right, 0 )
+    }
+
+    fun goToRegisteredClasses() {
+        var viewCoursesIntent : Intent = Intent( this, ViewRegisteredCoursesActivity::class.java)
+        startActivity( viewCoursesIntent )
         overridePendingTransition( R.anim.slide_from_right, 0 )
     }
 
@@ -143,49 +152,6 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-
-    fun viewRegisteredCoursesGUI(courses: ArrayList<String>) {
-        if (courses == null || courses.size == 0)
-            return
-        var vrl : RelativeLayout = RelativeLayout( this )
-
-        var startTop : Int = (screenHeight/11).toInt()
-        var verticalGap : Int = (screenHeight/7).toInt()
-        var leftMargin : Int = (screenWidth/7).toInt()
-
-        var bw = (screenWidth.toFloat()*(0.7)).toInt()
-        var bh = (screenHeight/(courses.size + 5)).toInt()
-        var i = 0
-
-        var tv : TextView = TextView(this)
-        tv.setText("List Of Courses Registered By " + MainActivity.LOGGED_IN_STUDENT.getUid())
-        var titleParams : RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(bw, bh)
-        titleParams.topMargin = startTop *(i+1) + verticalGap
-        i += 1
-        titleParams.leftMargin = leftMargin
-        vrl.addView(tv, titleParams)
-        for ( courseid in courses) {
-            var tv : TextView = TextView(this)
-            tv.setText(courseid)
-            var rParams : RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(bw, bh)
-            rParams.topMargin = startTop *(i+1) + verticalGap
-            i += 1
-            rParams.leftMargin = leftMargin
-            vrl.addView(tv, rParams)
-        }
-
-        viewCourseBackButton = Button(this)
-        viewCourseBackButton.text = "Go Back"
-        viewCourseBackButton.setOnClickListener(this)
-
-        var rParams : RelativeLayout.LayoutParams = RelativeLayout.LayoutParams(bw, bh)
-
-        rParams.topMargin = startTop *(i+1) + verticalGap
-
-        rParams.leftMargin = leftMargin
-        vrl.addView(viewCourseBackButton, rParams)
-        setContentView(vrl)
-    }
     override fun onClick(v: View?) {
 
         if( v != null && v == goBackButton) {
@@ -202,8 +168,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
             goToViewGrades(viewGrades)
 
         } else if (v != null && v == viewRegisCourseButton) {
-            viewRegisteredCoursesTask = ViewStudentRegisteredCoursesThread(this, MainActivity.LOGGED_IN_STUDENT.getUid())
-            viewRegisteredCoursesTask.start()
+            goToRegisteredClasses()
         } else if ( v!= null && v == viewCourseBackButton) {
             if ( rl != null )
                 setContentView(rl)

@@ -19,7 +19,6 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var title : TextView
     lateinit var backButton : Button
     lateinit var addButton : Button
-    lateinit var gradebook: Gradebook
     private lateinit var courses: Array<String>
     private lateinit var courseOptions : ArrayList<CheckBox>
     lateinit var registerCourseThread: PostRegisterCourseThread

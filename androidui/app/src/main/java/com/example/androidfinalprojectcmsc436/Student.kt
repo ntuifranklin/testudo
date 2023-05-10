@@ -8,6 +8,7 @@ class Student {
     private var firstname : String = ""
     private var middlename : String = ""
     private var lastname : String = ""
+    private var registeredCourses : ArrayList<String>
 
     //May want to make a default construtor as will so that students can be added to the database without needing to be signed in
     constructor(uid: String,
@@ -25,6 +26,7 @@ class Student {
         this.firstname = firstname
         this.middlename = middlename
         this.lastname = lastname
+        this.registeredCourses = ArrayList<String>()
     }
 
     /* Overloading constructor*/
@@ -79,6 +81,14 @@ class Student {
 
     fun setLastName(lastname: String) {
         this.lastname = lastname
+    }
+
+    fun getRegisteredCourses() : ArrayList<String> {
+        return registeredCourses
+    }
+
+    fun setRegisteredCourses(registeredCourses : ArrayList<String>) {
+        this.registeredCourses = registeredCourses
     }
 
     fun addStudentToDatabase(firstname: String, middlename: String, lastname: String, UID : String, DOB : String, username: String, password: String) : Unit {
