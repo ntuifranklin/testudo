@@ -67,7 +67,7 @@ The [`androidui`](https://github.com/ntuifranklin/cmsc436grproj/tree/main/androi
 
 # Server Setup
 The server needs to have `wamp` or `xamp` server setup.
-The [./sql/flush_and_reload_tables.sql](./sql/flush_and_reload_tables.sql) contains the sql queries to create the database on server side from scratch.  
+The [./sql/flush_and_reload_tables.sql](sql/flush_and_reload_tables.sql) contains the sql queries to create the database on server side from scratch.  
 The only manual thing to do is to create the user `fnkokamn_dbadmin` with password `AV7y8JFAnSrkyzy`.  
 The [`grant mysql query`](https://dev.mysql.com/doc/refman/8.0/en/grant.html) also needs to be run to grant the new creaed user privileges to run queries on the backend. 
 The following parameters need to be set server side for the android app to run properly 
@@ -87,10 +87,10 @@ Example of backedn call actions (value that the URL_LINK in android is supposed 
 - List all students 
  [https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=users](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=users).  
  This should produce a screen shot that looks like the image below : 
- ![All students image](./imgs/allstudents.png).  
+ ![All students image](imgs/allstudents.png).  
 - List one student
 [https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=user&username=mfisher&password=fhsgd](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=user&username=mfisher&password=fhsgd).  
- ![List one student](./imgs/onestudent.png)
+ ![List one student](imgs/onestudent.png)
 - List a Course  
 Need the `courseid` and `coursetitle` parameters in the url:  
 [`List CMSC131`](https://s56.cmsc436-2301.cs.umd.edu/server/backend.php?action=course&courseid=CMSC131)
