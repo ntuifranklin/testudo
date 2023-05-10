@@ -37,13 +37,18 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun goBack( ) : Unit {
+        finish()
+        overridePendingTransition(R.anim.slide_from_top, 0)
+    }
+
     override fun onClick(v: View?) {
-        if (v != null && v == signUpButton) {
-            finish()
-        } else if (v != null && v == goBackButton) {
+        if (v != null && v == goBackButton) {
+            goBack()
+        } else if (v != null && v == signUpButton) {
             var student : Student = Student(UID, username, password, DOB, firstName, middleInitial, lastName)
             student.addStudentToDatabase( firstName, middleInitial, lastName, UID, DOB, username, password)
-            finish()
+            goBack()
         }
     }
 

@@ -12,6 +12,7 @@ import javax.security.auth.Subject
 class EmailActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var sendEmailButton : Button
+    lateinit var goBackButton: Button
     lateinit var emailAddressET : EditText
     lateinit var emailSubjectET : EditText
     lateinit var emailMessageET : EditText
@@ -21,8 +22,10 @@ class EmailActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.email)
         sendEmailButton = findViewById(R.id.sendEmailButton)
+        goBackButton = findViewById(R.id.goBack)
 
         sendEmailButton.setOnClickListener(this)
+        goBackButton.setOnClickListener(this)
 
         emailAddressET = findViewById(R.id.emailAddress)
         emailSubjectET = findViewById(R.id.emailSubject)
@@ -47,6 +50,9 @@ class EmailActivity : AppCompatActivity(), View.OnClickListener {
                 Intent.createChooser(emailIntent, "Email your professor"),
                 null
             )
+        } else if (v != null && v == goBackButton) {
+            finish()
+            overridePendingTransition(R.anim.slide_from_top, 0)
         }
     }
 }

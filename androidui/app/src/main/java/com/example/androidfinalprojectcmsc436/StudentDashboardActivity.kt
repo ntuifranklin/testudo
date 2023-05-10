@@ -58,17 +58,18 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
     fun goToRegisterClasses() {
         var regClassesIntent : Intent = Intent( this, RegisterClassesActivity::class.java )
         startActivity( regClassesIntent )
-        overridePendingTransition( R.anim.slide_from_left, 0 )
+        overridePendingTransition( R.anim.slide_from_right, 0 )
     }
 
     fun goToViewGrades( v : View) {
         var viewGradesIntent : Intent = Intent( this, ShowGradesActivity::class.java)
         startActivity( viewGradesIntent )
+        overridePendingTransition( R.anim.slide_from_right, 0 )
     }
 
     fun goBack( v : View) {
         finish( )
-        overridePendingTransition( R.anim.fade_in_and_scale, 0 )
+        overridePendingTransition( R.anim.slide_from_top, 0 )
     }
 
     fun buildStudentDashboardMenuByCode( ) {

@@ -25,11 +25,13 @@ class ShowGradesActivity : AppCompatActivity(), View.OnClickListener {
 
     fun goBack( v : View) {
         finish( )
+        overridePendingTransition(R.anim.slide_from_top, 0)
     }
 
     fun goToEmail( v : View) {
         var emailViewIntent : Intent = Intent( this, EmailActivity::class.java)
         startActivity( emailViewIntent )
+        overridePendingTransition(R.anim.slide_from_right, 0)
     }
 
     override fun onClick(v: View?) {

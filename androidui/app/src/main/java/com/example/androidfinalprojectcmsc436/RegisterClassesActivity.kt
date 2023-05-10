@@ -129,7 +129,6 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
         if (v != null && v == backButton) {
             goBack(backButton)
         } else if (v != null && v == addButton) {
-            //To be replaced with functionality for adding courses for the given student
             if (courseOptions != null ) {
                 var coursesR: ArrayList<String> = ArrayList<String>()
                 for ( courseOption in courseOptions) {
@@ -157,7 +156,7 @@ class RegisterClassesActivity : AppCompatActivity(), View.OnClickListener {
 
     fun goBack(v : View) : Unit {
         finish( )
-        overridePendingTransition( R.anim.fade_in_and_scale, 0 )
+        overridePendingTransition( R.anim.slide_from_top, 0 )
     }
 
     companion object {

@@ -81,4 +81,17 @@
             />
     </TableRow>
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:paddingTop="25dp">
+        <Button
+            android:id="@+id/goBack"
+            android:text="Go Back"
+            android:height="80sp"
+            android:layout_marginBottom="30dp"
+            />
+    </TableRow>
+
 </TableLayout>
