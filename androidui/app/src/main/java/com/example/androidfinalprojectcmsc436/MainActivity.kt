@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     fun goBack( v : View) {
         // go back
         finish( )
-        overridePendingTransition( R.anim.fade_in_and_scale, 0 )
+        overridePendingTransition( R.anim.slide_from_right, 0 )
     }
 
     fun checkUserLogin()  {
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             StudentDashboardActivity.LOGGED_IN_STUDENT = student
             var myIntent : Intent = Intent( this, StudentDashboardActivity::class.java )
             startActivity( myIntent )
-            overridePendingTransition( R.anim.slide_from_left, 0 )
+            overridePendingTransition( R.anim.slide_from_right, 0 )
 
         } catch ( e : Exception) {
             Log.w(MA, "Exception: " + e.message )
@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
     fun goToSignUp( ) {
         var signUpIntent : Intent = Intent( this, SignUpActivity::class.java )
         startActivity( signUpIntent )
+        overridePendingTransition( R.anim.slide_from_right, 0 )
     }
 
     inner class ButtonHandler : View.OnClickListener {
