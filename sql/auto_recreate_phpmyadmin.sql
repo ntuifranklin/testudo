@@ -24,6 +24,10 @@ SET time_zone = "+00:00";
 -- Creation: May 05, 2023 at 04:42 PM
 --
 
+-- DROP DATABASE IF EXISTS `fnkokamn_terpdb2` ;
+-- CREATE DATABASE IF NOT EXISTS `fnkokamn_terpdb2` ;
+-- USE `fnkokamn_terpdb2`;
+
 DROP TABLE IF EXISTS `ASSIGNMENT`;
 CREATE TABLE IF NOT EXISTS `ASSIGNMENT` (
   `ASSIGNMENTID` varchar(100) NOT NULL,
