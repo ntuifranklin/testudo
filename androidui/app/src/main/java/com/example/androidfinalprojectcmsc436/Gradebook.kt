@@ -27,8 +27,9 @@ class Gradebook {
         return courses
     }
 
-    fun setCourses( ) : Unit {
-
+    fun calculateCourseGrade( ) : Double {
+        TODO("Need to calculate a courses grade based on the given assignments")
+        return 0.0
     }
 
 
