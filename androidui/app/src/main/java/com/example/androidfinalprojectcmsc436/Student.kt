@@ -9,6 +9,7 @@ class Student {
     private var middlename : String = ""
     private var lastname : String = ""
     private var registeredCourses : ArrayList<String>
+    private var courseAssignments : HashMap<String, ArrayList<Assignment>>
 
     //May want to make a default construtor as will so that students can be added to the database without needing to be signed in
     constructor(uid: String,
@@ -27,6 +28,7 @@ class Student {
         this.middlename = middlename
         this.lastname = lastname
         this.registeredCourses = ArrayList<String>()
+        this.courseAssignments = HashMap<String, ArrayList<Assignment>>()
     }
 
     /* Overloading constructor*/
@@ -89,6 +91,24 @@ class Student {
 
     fun setRegisteredCourses(registeredCourses : ArrayList<String>) {
         this.registeredCourses = registeredCourses
+    }
+
+    fun getCourseAssignments() : HashMap<String, ArrayList<Assignment>> {
+        return courseAssignments
+    }
+
+    fun setCourseAssignments(course : String, assignment: Assignment) : Unit {
+        if (!registeredCourses.contains(course)) {
+            return
+        } else if (!courseAssignments.containsKey(course)) {
+            val assignments : ArrayList<Assignment> = ArrayList<Assignment>()
+            assignments.add(assignment)
+            courseAssignments[course] = assignments
+        } else {
+            var assignments : java.util.ArrayList<Assignment>? = courseAssignments[course]
+            assignments!!.add(assignment)
+            courseAssignments[course] = assignments!!
+        }
     }
 
     fun addStudentToDatabase(firstname: String, middlename: String, lastname: String, UID : String, DOB : String, username: String, password: String) : Unit {
