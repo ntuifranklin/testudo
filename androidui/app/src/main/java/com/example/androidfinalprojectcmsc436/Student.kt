@@ -60,6 +60,9 @@ class Student {
     fun getLastName() : String {
         return this.lastname
     }
+    fun getPassword() : String {
+        return this.password
+    }
 
     fun setUid(uid: String) {
         this.uid = uid
@@ -85,6 +88,9 @@ class Student {
         this.lastname = lastname
     }
 
+    fun setPassword(password: String) {
+        this.password = password
+    }
     fun getRegisteredCourses() : ArrayList<String> {
         return registeredCourses
     }
@@ -111,8 +117,21 @@ class Student {
         }
     }
 
-    fun addStudentToDatabase(firstname: String, middlename: String, lastname: String, UID : String, DOB : String, username: String, password: String) : Unit {
-        //TODO, add user data from the sign up screen to the database
+    fun getStudentObjectAsURLParams(): String {
+        var params = ""
+        params += "firstname=${getFirstName()}"
+        params += "&middlename=${getMiddleName()}"
+        params += "&lastname=${getLastName()}"
+        params += "&dob=${getDob()}"
+        params += "&uid=${getUid()}"
+        params += "&username=${getUsername()}"
+        params += "&password=${getPassword()}"
+        return params
+    }
+    fun addStudentToDatabase() : Boolean {
+        var b : Backend = Backend()
+        return b.post_signup_student(this)
+
     }
 
     override fun toString(): String {

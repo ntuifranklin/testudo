@@ -25,6 +25,23 @@ switch ($action) {
 
     };
     break;
+    case 'signup_student':{
+        
+        $studentuid = "" ;
+        $courseid = "" ;
+        
+        if(array_key_exists("studentuid", $_POST)){
+            $studentuid = $_POST['studentuid'];
+        } ;
+
+        if(array_key_exists("courseid", $_POST)){
+            $courseid = $_POST['courseid'];
+        } ;
+        $result = register_course($studentuid,$courseid)  ;
+        echo $result ;
+
+    };
+    break;
     default :
         echo json_encode($unathorized);
         break;
