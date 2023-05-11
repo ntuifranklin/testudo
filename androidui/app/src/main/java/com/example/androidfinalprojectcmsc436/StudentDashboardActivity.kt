@@ -178,6 +178,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
     companion object {
         //const val LOGIN_BASE_URL: String = "https://s56.cmsc436-2301.cs.umd.edu/"
         const val SERVER_BASE_URL: String = MainActivity.SERVER_BASE_URL
