@@ -169,7 +169,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
                 goToRegisteredClasses()
             else {
                 var t : Toast = Toast.makeText(this, "You do not have any registered courses yet. Please Register for a course", Toast.LENGTH_LONG)
-                t.setGravity(Gravity.CENTER, (screenWidth/2).toInt(), (screenHeight/2).toInt())
+                t.setGravity(Gravity.CENTER, (screenWidth/4).toInt(), (screenHeight/4).toInt())
                 t.show()
             }
         } else if ( v!= null && v == viewCourseBackButton) {
