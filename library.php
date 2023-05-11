@@ -112,10 +112,10 @@ function register_student(
     try{
         if ($stmt -> execute() ) {
             $conn -> close();
-            $r = '[{"UID":"'.$uid.'", "STATUS":"success","ERROR":""}]' ;
+            $r = "[{'UID':'$uid', 'STATUS':'success','ERROR':''}]" ;
         } 
     } catch(Exception $e) {
-        $r = '[{"UID":"'.$uid.'", "STATUS":"failure","ERROR":"'.$e.'"}]' ;
+        $r = "[{'UID':'$uid', 'STATUS':'failure','ERROR':'$e'}]" ; 
     } ;
     
     return json_encode($r, JSON_PRETTY_PRINT) ;
