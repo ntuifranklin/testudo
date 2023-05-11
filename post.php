@@ -63,7 +63,7 @@ switch ($action) {
 
         $result = register_student(
             $uid,$username, 
-            $password, $dob=, 
+            $password, $dob, 
             $firstname, $middlename,
             $lastname)  ;
         echo $result ;

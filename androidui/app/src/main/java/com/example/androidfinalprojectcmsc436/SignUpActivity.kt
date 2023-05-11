@@ -40,9 +40,12 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     fun showSuccessMessage(success : Boolean) {
         if ( !success ) {
             Toast.makeText(this, "Failure to Signup Student", Toast.LENGTH_LONG).show()
-            goBack()
-        } else
+            //goBack()
+        } else {
             Toast.makeText(this, "Successful to Signup Student", Toast.LENGTH_LONG).show()
+            goBack()
+        }
+
     }
 
     override fun onClick(v: View?) {
