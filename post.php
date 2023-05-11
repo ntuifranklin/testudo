@@ -27,17 +27,45 @@ switch ($action) {
     break;
     case 'signup_student':{
         
-        $studentuid = "" ;
-        $courseid = "" ;
+        $uid = "" ;
+        $username = "" ;
+        $password = "" ;
+        $dob = "";
+        $firstname = "";
+        $middlename = "";
+        $lastname = "";
         
-        if(array_key_exists("studentuid", $_POST)){
-            $studentuid = $_POST['studentuid'];
+        if(array_key_exists("uid", $_POST)){
+            $uid = $_POST['uid'];
         } ;
 
-        if(array_key_exists("courseid", $_POST)){
-            $courseid = $_POST['courseid'];
+        if(array_key_exists("username", $_POST)){
+            $username= $_POST['username'];
         } ;
-        $result = register_course($studentuid,$courseid)  ;
+        if(array_key_exists("password", $_POST)){
+            $password = $_POST['password'];
+        } ;
+        
+        if(array_key_exists("dob", $_POST)){
+            $dob= $_POST['dob'];
+        } ;
+
+        if(array_key_exists("firstname", $_POST)){
+            $firstname= $_POST['firstname'];
+        } ;
+
+        if(array_key_exists("middlename", $_POST)){
+            $middlename= $_POST['middlename'];
+        } ;
+        if(array_key_exists("lastname", $_POST)){
+            $lastname= $_POST['lastname'];
+        } ;
+
+        $result = register_student(
+            $uid,$username, 
+            $password, $dob=, 
+            $firstname, $middlename,
+            $lastname)  ;
         echo $result ;
 
     };
