@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TableRow
-import android.widget.Toast
+import android.widget.*
 import androidx.core.text.isDigitsOnly
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -56,6 +53,8 @@ class MainActivity : AppCompatActivity() {
         adRequestBuilder.addKeyword("Student")
         adRequestBuilder.addKeyword("College")
         adRequestBuilder.addKeyword("Grades")
+        adRequestBuilder.addKeyword("Books")
+        adRequestBuilder.addKeyword("TextBooks")
         var adRequest : AdRequest = adRequestBuilder.build()
 
         var adTableRow : TableRow = findViewById<TableRow>(R.id.ad)
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         try {
             adView.loadAd(adRequest)
         } catch( e : Exception) {
-            Log.w("MainActivity", "Error loading the ad")
+            Log.w(MA, "Error loading the ad")
         }
     }
 
@@ -83,6 +82,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun showErrorUserLoginToast(e : Exception) {
+        var m : String = "Unknown Error"
+        if ( e != null )
+            m = e.message.toString()
+
+        var ct : CustomToast = CustomToast(this, m)
+        ct.getCustomToast().show()
+
+    }
 
     fun showStudentDashboard(student: Student) {
         Log.w(MA, "Result from backend server" + student)
