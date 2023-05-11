@@ -279,9 +279,7 @@ class Backend {
         try {
             s = ""
             val url = URL(loginUrl)
-            var postData : String = ""
-            postData += "name=signup_student"
-            postData += "&" + student.getStudentObjectAsURLParams()
+            val postData : String = "name=signup_student" + "&" + student.getStudentObjectAsURLParams()
             Log.w(MainActivity.MA,postData)
             val conn = url.openConnection() as HttpURLConnection
             conn.requestMethod = "POST"
