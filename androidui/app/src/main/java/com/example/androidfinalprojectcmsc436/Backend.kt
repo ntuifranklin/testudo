@@ -271,6 +271,70 @@ class Backend {
 
      }
 
+    fun post_signup_student(student: Student) : Boolean {
+        loginUrl = MainActivity.SERVER_BASE_POST_URL
+        var result : Boolean  = true
+        var s = ""
+        var errorMessage : String  = "["
+        var i: Int = 0
+
+        try {
+            s = ""
+            val url = URL(loginUrl)
+            var postData : String = ""
+            postData += "name=signup_student"
+            postData += "&" + student.getStudentObjectAsURLParams()
+            Log.w(MainActivity.MA,postData)
+            val conn = url.openConnection() as HttpURLConnection
+            conn.requestMethod = "POST"
+            conn.doOutput = true
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+            conn.setRequestProperty("Content-Length", postData.length.toString())
+            conn.useCaches = false
+
+            DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+            /*
+            BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
+                var line: String?
+                while (br.readLine().also { line = it } != null) {
+                    s += line
+                    Log.w(MainActivity.MA,""+line)
+                }
+            }
+            */
+
+            val iStream : InputStream = conn.inputStream
+            val scan: Scanner = Scanner(iStream)
+
+            while (scan.hasNext())
+            {
+                s += scan.nextLine()
+            }
+            var d : JSONArray = JSONArray(s)
+            for (i in 0 until d.length()) {
+
+                var jsa : JSONObject = d.optJSONObject(i)
+                var error_message : String = jsa.getString("ERROR")
+                if (error_message.length > 0)
+                    result = false
+
+            }
+
+
+
+        } catch( e: JSONException) {
+            errorMessage += "{'error_message':'${e.message}'},"
+            result = false
+            Log.w(MainActivity.MA, errorMessage)
+        }
+
+
+
+        return result
+
+    }
+
+
     fun get_registered_courses(studentuid: String) : ArrayList<String> {
         loginUrl = MainActivity.SERVER_BASE_URL
         var enrollCourses: ArrayList<String> = ArrayList<String>()

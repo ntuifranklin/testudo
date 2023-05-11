@@ -5,6 +5,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
@@ -47,7 +48,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             goBack()
         } else if (v != null && v == signUpButton) {
             var student : Student = Student(UID, username, password, DOB, firstName, middleInitial, lastName)
-            student.addStudentToDatabase( firstName, middleInitial, lastName, UID, DOB, username, password)
+            var success = student.addStudentToDatabase()
+            if ( !success )
+                Toast.makeText(this, "Failure to Signup Student", Toast.LENGTH_LONG).show()
+            else
+                Toast.makeText(this, "Successful to Signup Student", Toast.LENGTH_LONG).show()
             goBack()
         }
     }

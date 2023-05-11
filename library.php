@@ -72,6 +72,55 @@ function register_course($studentuid='',$courseid='') {
     
 } ;
 
+/*
+
+CREATE TABLE IF NOT EXISTS `STUDENT` (
+  `UID` varchar(100) NOT NULL,
+  `USERNAME` varchar(100) DEFAULT NULL,
+  `PASSWORD` varchar(100) DEFAULT NULL,
+  `DOB` date NOT NULL,
+  `FIRSTNAME` varchar(100) DEFAULT NULL,
+  `MIDDLENAME` varchar(100) DEFAULT NULL,
+  `LASTNAME` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`UID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+*/
+
+function register_student(
+                        $uid='',$username='', 
+                        $password='', $dob='', 
+                        $firstname='', $middlename='',
+                        $lastname='') {
+    $r = "";
+    $conn = connectdb();
+    $stmt = $conn->prepare("INSERT INTO STUDENT VALUES (?, ?, ?, ?, ?, ?, ?) ;");
+    
+    
+    $stmt->bind_param(
+        "sssssss", 
+        $uid,
+        $username,
+        $password,
+        $dob,
+        $firstname,
+        $middlename,
+        $lastname
+    );
+    try{
+        if ($stmt -> execute() ) {
+            $conn -> close();
+            $r = '[{"UID":"'.$uid.'", "STATUS":"success","ERROR":""}]' ;
+        } 
+    } catch(Exception $e) {
+        $r = '[{"UID":"'.$uid.'", "STATUS":"failure","ERROR":"'.$e.'"}]' ;
+    } ;
+    
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+} ;
+
 function get_all_students() {
     
     $conn = connectdb();
