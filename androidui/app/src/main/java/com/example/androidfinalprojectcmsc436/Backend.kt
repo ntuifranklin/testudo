@@ -276,8 +276,6 @@ class Backend {
         var result : Boolean  = true
         var s = ""
 
-
-
         try {
             s = ""
             val url = URL(loginUrl)
