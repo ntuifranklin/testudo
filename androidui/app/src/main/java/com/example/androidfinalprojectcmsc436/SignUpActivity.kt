@@ -25,13 +25,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_up)
 
-        firstName = findViewById<EditText>(R.id.firstname_ET).text.toString()
-        middleInitial = findViewById<EditText>(R.id.middle_initial_ET).text.toString()
-        lastName = findViewById<EditText>(R.id.lastname_ET).text.toString()
-        UID = findViewById<EditText>(R.id.UID_ET).text.toString()
-        DOB = findViewById<EditText>(R.id.DOB_ET).text.toString()
-        username = findViewById<EditText>(R.id.username_ET).text.toString()
-        password = findViewById<EditText>(R.id.password_ET).text.toString()
         signUpButton = findViewById<Button>(R.id.sign_up_button)
         goBackButton = findViewById<Button>(R.id.go_back_button)
         signUpButton.setOnClickListener(this)
@@ -56,6 +49,15 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         if (v != null && v == goBackButton) {
             goBack()
         } else if (v != null && v == signUpButton) {
+
+            firstName = findViewById<EditText>(R.id.firstname_ET).text.toString()
+            middleInitial = findViewById<EditText>(R.id.middle_initial_ET).text.toString()
+            lastName = findViewById<EditText>(R.id.lastname_ET).text.toString()
+            UID = findViewById<EditText>(R.id.UID_ET).text.toString()
+            DOB = findViewById<EditText>(R.id.DOB_ET).text.toString()
+            username = findViewById<EditText>(R.id.username_ET).text.toString()
+            password = findViewById<EditText>(R.id.password_ET).text.toString()
+
             var student : Student = Student(UID, username, password, DOB, firstName, middleInitial, lastName)
             signup_thread = PostStudentThread(this, student)
             signup_thread.start()
