@@ -19,6 +19,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var password : String
     lateinit var signUpButton : Button
     lateinit var goBackButton : Button
+    private lateinit var signup_thread : PostStudentThread
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +44,23 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         overridePendingTransition(R.anim.slide_from_top, 0)
     }
 
+    fun showSuccessMessage(success : Boolean) {
+        if ( !success ) {
+            Toast.makeText(this, "Failure to Signup Student", Toast.LENGTH_LONG).show()
+            goBack()
+        } else
+            Toast.makeText(this, "Successful to Signup Student", Toast.LENGTH_LONG).show()
+    }
+
     override fun onClick(v: View?) {
         if (v != null && v == goBackButton) {
             goBack()
         } else if (v != null && v == signUpButton) {
             var student : Student = Student(UID, username, password, DOB, firstName, middleInitial, lastName)
-            var success = student.addStudentToDatabase()
-            if ( !success )
-                Toast.makeText(this, "Failure to Signup Student", Toast.LENGTH_LONG).show()
-            else
-                Toast.makeText(this, "Successful to Signup Student", Toast.LENGTH_LONG).show()
-            goBack()
+            signup_thread = PostStudentThread(this, student)
+            signup_thread.start()
+
+            //goBack()
         }
     }
 
