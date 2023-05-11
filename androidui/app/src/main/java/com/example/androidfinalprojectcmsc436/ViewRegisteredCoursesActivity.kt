@@ -5,10 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class ViewRegisteredCoursesActivity : AppCompatActivity(), View.OnClickListener {
@@ -27,8 +24,12 @@ class ViewRegisteredCoursesActivity : AppCompatActivity(), View.OnClickListener 
     }
 
     fun viewRegisteredregisteredCoursesGUI( ) {
-        if (registeredCourses == null || registeredCourses.size == 0)
+        if (registeredCourses == null || registeredCourses.size == 0) {
+            Toast.makeText(this, "You do not have any registered courses yet. Please Register for a course", Toast.LENGTH_LONG).show()
+            //goBack()
             return
+        }
+
         var registeredCourseIdMappings : HashMap<String, Int> = HashMap<String, Int>()
 
         var title : TextView = TextView(this)

@@ -350,8 +350,6 @@ class Backend {
 
             }
 
-
-
         } catch(e : JSONException) {
 
         }
