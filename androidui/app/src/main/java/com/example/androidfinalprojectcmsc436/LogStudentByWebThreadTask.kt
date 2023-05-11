@@ -32,6 +32,7 @@ class LogStudentByWebThreadTask : Thread {
             var password : String = passwordET.text.toString()
             var backend : Backend = Backend()
             student = backend.get_one_student_from_database(username,password)
+            student.setRegisteredCourses(backend.get_registered_courses(student.getUid()))
 
             Log.w(MainActivity.MA, student.toString())
             var showDashboardGui: ShowDashboardGui = ShowDashboardGui()

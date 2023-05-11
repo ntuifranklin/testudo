@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         } catch ( e : Exception) {
             Log.w(MA, "Exception: " + e.message )
-            //Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Wrong User name or  passsword ",Toast.LENGTH_SHORT).show()
         }
 
     }

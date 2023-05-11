@@ -8,14 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
+import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RelativeLayout
-import android.widget.TextClock
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 
@@ -168,7 +164,14 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
             goToViewGrades(viewGrades)
 
         } else if (v != null && v == viewRegisCourseButton) {
-            goToRegisteredClasses()
+            var sc : ArrayList<String> = MainActivity.LOGGED_IN_STUDENT.getRegisteredCourses()
+            if ( sc != null && sc.size > 0)
+                goToRegisteredClasses()
+            else {
+                var t : Toast = Toast.makeText(this, "You do not have any registered courses yet. Please Register for a course", Toast.LENGTH_LONG)
+                t.setGravity(Gravity.CENTER, (screenWidth/4).toInt(), (screenHeight/4).toInt())
+                t.show()
+            }
         } else if ( v!= null && v == viewCourseBackButton) {
             if ( rl != null )
                 setContentView(rl)
