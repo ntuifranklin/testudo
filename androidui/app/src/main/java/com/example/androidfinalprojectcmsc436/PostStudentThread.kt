@@ -14,7 +14,8 @@ class PostStudentThread : Thread {
     constructor( activity : SignUpActivity, student : Student ) {
         this.taskActivity = activity
         this.student = student
-
+        if ( student != null )
+        Log.w(MainActivity.MA, "Student received in Post Signup thread : $student")
 
     }
 
@@ -30,6 +31,7 @@ class PostStudentThread : Thread {
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception Posting Student to database: " + e.message ) ;
+            Log.w(MainActivity.MA, "Exception Posting Student to database: $e" ) ;
 
         }
         taskActivity.runOnUiThread(showSuccessFailure);

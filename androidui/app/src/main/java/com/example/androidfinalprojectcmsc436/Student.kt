@@ -36,6 +36,23 @@ class Student {
     ) : this("","","","","","","") {
 
     }
+    private fun copy (uid: String = getUid(),
+                      username: String = getUsername(),
+                      password: String = getPassword(),
+                      dob: String = getDob(),
+                      firstname: String = getFirstName(),
+                      middlename: String = getMiddleName(),
+                      lastname: String = getLastName()) :  Student {
+
+        return Student(uid,
+            username,
+            password,
+            dob,
+            firstname,
+            middlename,
+            lastname)
+
+    }
 
     fun getUid() : String {
         return this.uid
@@ -130,7 +147,7 @@ class Student {
     }
     fun addStudentToDatabase() : Boolean {
         var b : Backend = Backend()
-        return b.post_signup_student(this)
+        return b.post_signup_student(this.copy())
 
     }
 
