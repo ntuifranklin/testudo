@@ -275,8 +275,8 @@ class Backend {
         loginUrl = MainActivity.SERVER_BASE_POST_URL
         var result : Boolean  = true
         var s = ""
-        var errorMessage : String  = "["
-        var i: Int = 0
+
+
 
         try {
             s = ""
@@ -293,15 +293,6 @@ class Backend {
             conn.useCaches = false
 
             DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
-            /*
-            BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
-                var line: String?
-                while (br.readLine().also { line = it } != null) {
-                    s += line
-                    Log.w(MainActivity.MA,""+line)
-                }
-            }
-            */
 
             val iStream : InputStream = conn.inputStream
             val scan: Scanner = Scanner(iStream)
@@ -311,25 +302,22 @@ class Backend {
                 s += scan.nextLine()
             }
             var d : JSONArray = JSONArray(s)
+            Log.w(MainActivity.MA, "return from server : " + s)
             for (i in 0 until d.length()) {
 
                 var jsa : JSONObject = d.optJSONObject(i)
-                var error_message : String = jsa.getString("ERROR")
+                var error_message : String = ""
+                error_message = jsa.getString("ERROR")
                 if (error_message.length > 0)
                     result = false
 
             }
-
-
-
         } catch( e: JSONException) {
-            errorMessage += "{'error_message':'${e.message}'},"
+
             result = false
-            Log.w(MainActivity.MA, errorMessage)
+            Log.w(MainActivity.MA, "Result From Server : " + s)
+
         }
-
-
-
         return result
 
     }
