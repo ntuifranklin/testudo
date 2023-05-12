@@ -271,7 +271,7 @@ class Backend {
 
      }
 
-    fun post_course_assignment( assignmentTitle:String, weight : Double, courseid: String, studentuid: String, earnedgrade : Double ) : Boolean {
+    fun post_course_assignment( assignmentTitle:String, weight : Double, studentuid: String, earnedgrade : Double ) : Boolean {
         var success : Boolean = true
         loginUrl = MainActivity.SERVER_BASE_POST_URL
         var result : String = "["
@@ -282,7 +282,7 @@ class Backend {
         try {
             s = ""
             val url = URL(loginUrl)
-            val postData : String = "name=submit_assignment&assignmentTitle=${assignmentTitle}&studentuid=${studentuid}&courseid=${courseid}&earnedgrade=${earnedgrade}"
+            val postData : String = "name=submit_assignment&assignmentTitle=${assignmentTitle}&studentuid=${studentuid}&earnedgrade=${earnedgrade}"
             Log.w(MainActivity.MA,postData)
             val conn = url.openConnection() as HttpURLConnection
             conn.requestMethod = "POST"

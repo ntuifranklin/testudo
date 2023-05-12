@@ -13,7 +13,7 @@
             style="@style/SignUpLabels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Course"
+            android:text=""
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
@@ -26,6 +26,30 @@
             android:inputType="text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/coursename_label"></EditText>
+
+
+
+        <TextView
+            android:id="@+id/assignmentTitleLabel"
+            style="@style/SignUpLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assignment Title Laeel"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+        <EditText
+            android:id="@+id/assignmentTitle"
+            style="@style/SignUpET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/assignment_title_label"
+            android:inputType="text"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coursename_label"></EditText>
+
+
+
 
         <TextView
             android:id="@+id/title_label"
@@ -75,7 +99,7 @@
             app:layout_constraintTop_toBottomOf="@+id/weight_ET"></TextView>
 
         <EditText
-            android:id="@+id/percentage_ET"
+            android:id="@+id/grade_ET"
             style="@style/SignUpET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Grade"
-            android:id="@+id/sign_up_button"
+            android:id="@+id/add_grade_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/percentage_ET"
@@ -103,7 +127,7 @@
             android:id="@+id/go_back_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_button"
+            app:layout_constraintTop_toBottomOf="@id/add_grade_button"
             android:layout_marginTop="20dp">
         </Button>
 
