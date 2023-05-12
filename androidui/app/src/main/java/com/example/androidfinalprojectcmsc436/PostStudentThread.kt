@@ -14,8 +14,8 @@ class PostStudentThread : Thread {
     constructor( activity : SignUpActivity, student : Student ) {
         this.taskActivity = activity
         this.student = student
-        if ( student != null )
-        Log.w(MainActivity.MA, "Student received in Post Signup thread : $student")
+        if ( this.student != null )
+            Log.w(MainActivity.MA, "Student received in Post Signup thread : $student")
 
     }
 
