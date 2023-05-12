@@ -64,4 +64,7 @@
     <string name="dashboard_view_grades">See Your Grades</string>
     <string name="dashboard_goback"> LOG OUT </string>
 
+
+    <string name="assignment_title_label">Title For this Assignment : </string>
+
 </resources>

@@ -13,15 +13,13 @@ class PostAssignmentThread : Thread {
     private var post_student_success = false
     private var assignmentTitle : String = ""
     private var weight : Double = 0.0
-    private var courseid : String = ""
     private var studentuid : String = ""
     private var earnedgrade : Double = 0.0
 
-    constructor( activity : AddGradeActivity, assignmentTitle:String, weight : Double, courseid: String, studentuid: String, earnedgrade : Double ) {
+    constructor( activity : AddGradeActivity, assignmentTitle:String, weight : Double, studentuid: String, earnedgrade : Double ) {
         this.taskActivity = activity
         this.assignmentTitle = assignmentTitle
         this.weight = weight
-        this.courseid = courseid
         this.studentuid = studentuid
         this.earnedgrade = earnedgrade
 
@@ -36,7 +34,7 @@ class PostAssignmentThread : Thread {
         var backend : Backend = Backend()
         var result : Boolean = false
         try {
-            result = backend.post_course_assignment(assignmentTitle,weight,courseid,studentuid,earnedgrade)
+            result = backend.post_course_assignment(assignmentTitle,weight,studentuid,earnedgrade)
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception Posting Student to database: " + e.message ) ;

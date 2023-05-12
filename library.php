@@ -72,7 +72,7 @@ function register_course($studentuid='',$courseid='') {
     
 } ;
 
-function submit_assignment($assignmenttitle='', $weight=0.0, $courseid='', $studentuid='', $earnedgrade = 0.0) {
+function submit_assignment($assignmenttitle='', $weight=0.0, $studentuid='', $earnedgrade = 0.0) {
     $r = "";
     $conn = connectdb();
     $stmt = $conn->prepare("INSERT INTO `ASSIGNMENT` VALUES (?, ?, ?, ?, ?, ?) ;");
@@ -80,21 +80,20 @@ function submit_assignment($assignmenttitle='', $weight=0.0, $courseid='', $stud
     $assignmentid = uniqid("$studentuid"."_"."$courseid", true);
     
     $stmt->bind_param(
-        "ssdssd", 
+        "ssdsd", 
         $assignmentid,
         $assignmenttitle,
         $weight,
-        $courseid,
         $studentuid,
         $earnedgrade
     );
     try{
         if ($stmt -> execute() ) {
             $conn -> close();
-            $r = "[{'COURSEID':'$courseid','STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'success','ERROR':''}]" ;
+            $r = "[{'STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'success','ERROR':''}]" ;
         } 
     } catch(Exception $e) {
-        $r = "[{'COURSEID':'$courseid','STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'failure','ERROR':'$e'}]" ;
+        $r = "[{'STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'failure','ERROR':'$e'}]" ;
     } ;
     
     return json_encode($r, JSON_PRETTY_PRINT) ;
