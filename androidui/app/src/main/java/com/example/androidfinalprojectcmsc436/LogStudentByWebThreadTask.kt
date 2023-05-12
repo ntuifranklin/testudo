@@ -35,6 +35,8 @@ class LogStudentByWebThreadTask : Thread {
             var backend : Backend = Backend()
             student = backend.get_one_student_from_database(username,password)
             student.setRegisteredCourses(backend.get_registered_courses(student.getUid()))
+            MainActivity.LOGGED_IN_STUDENT  = student
+            StudentDashboardActivity.LOGGED_IN_STUDENT = student
 
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Logging In Student Exception: " + e.message )

@@ -32,7 +32,7 @@ class ViewStudentRegisteredCoursesThread : Thread {
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Exception: " + e.message ) ;
 
-            studentDashboardActivity.finish() ;
+            //studentDashboardActivity.finish() ;
         }
     }
 
@@ -40,6 +40,8 @@ class ViewStudentRegisteredCoursesThread : Thread {
         override fun run() {
             //studentDashboardActivity.viewRegisteredCoursesGUI(coursesAsStrings)
             MainActivity.LOGGED_IN_STUDENT.setRegisteredCourses(coursesAsStrings)
+            StudentDashboardActivity.LOGGED_IN_STUDENT.setRegisteredCourses(coursesAsStrings)
+            studentDashboardActivity.goToRegisteredClasses()
         }
 
     }
