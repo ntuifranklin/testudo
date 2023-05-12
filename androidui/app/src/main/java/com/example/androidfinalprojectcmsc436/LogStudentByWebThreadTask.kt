@@ -36,11 +36,6 @@ class LogStudentByWebThreadTask : Thread {
             student = backend.get_one_student_from_database(username,password)
             student.setRegisteredCourses(backend.get_registered_courses(student.getUid()))
 
-
-
-
-
-
         } catch ( e : Exception) {
             Log.w(MainActivity.MA, "Logging In Student Exception: " + e.message )
 

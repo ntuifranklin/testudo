@@ -62,6 +62,15 @@ switch ($action) {
     case 'putuser':
         echo "{'result':'TODO:PUTUSER'}";
         break;
+
+    case 'studentgrades' : {
+        // function get_grades($studentuid='')
+        $studentuid = "";
+        if (array_key_exists("studentuid", $_GET))
+            $studentuid = $_GET['studentuid'];
+        $r = get_grades($studentuid);
+        echo json_encode($r,JSON_PRETTY_PRINT) ;
+    } ; break ;
     default :
         echo "{'result':'Unknown operation'}";
     ;
