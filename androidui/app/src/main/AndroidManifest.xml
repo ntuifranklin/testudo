@@ -47,6 +47,8 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".ViewRegisteredCoursesActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".AddGradeActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
