@@ -1,5 +1,8 @@
 package com.example.androidfinalprojectcmsc436
 
+import android.content.Context
+import android.widget.Toast
+
 class Student {
     private var uid : String = ""
     private  var username :  String = ""
@@ -149,6 +152,23 @@ class Student {
         var b : Backend = Backend()
         return b.post_signup_student(this.copy())
 
+    }
+    fun calculateGrade(course: String, context: Context) : Double {
+        var grade = 0.0
+        if ( !courseAssignments.containsKey(course) ) {
+            val toast = Toast.makeText(context, "Course does not exist!", Toast.LENGTH_SHORT)
+            toast.show()
+        } else {
+            var assignments = courseAssignments[course]
+            if ( assignments == null) {
+                val toast = Toast.makeText(context, "Course does not exist!", Toast.LENGTH_SHORT)
+                toast.show()
+            }
+            for ( a in assignments!!) {
+                grade += a.getWeight()* a.getScore() * 100
+            }
+        }
+        return grade
     }
 
     override fun toString(): String {

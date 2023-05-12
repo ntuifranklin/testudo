@@ -33,6 +33,11 @@ class ShowGradesActivity : AppCompatActivity(), View.OnClickListener {
         startActivity( emailViewIntent )
         overridePendingTransition(R.anim.slide_from_right, 0)
     }
+    fun goToGrades( v : View) {
+        var GradeViewIntent : Intent = Intent( this, AddGradeActivity::class.java)
+        startActivity( GradeViewIntent )
+        overridePendingTransition(R.anim.slide_from_right, 0)
+    }
 
     override fun onClick(v: View?) {
         if (v != null && v == goBackButton) {
@@ -40,7 +45,7 @@ class ShowGradesActivity : AppCompatActivity(), View.OnClickListener {
         } else if (v != null && v == emailButton) {
             goToEmail(emailButton)
         } else if (v != null && v == addGradeButton) {
-
+            goToGrades(addGradeButton)
         }
     }
 }
