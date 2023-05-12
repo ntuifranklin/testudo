@@ -56,6 +56,11 @@
     <string name="dashboard_register_course">Register For A Course</string>
     <string name="dashboard_view_registered_courses">View Registered Courses</string>
 
+    <string name="Course">Course ID: </string>
+    <string name="course_placeholder">Ex: CMSC132 </string>
+    <string name="percentage_label">Grade Percentage:</string>
+    <string name="percentage_placeholder">Ex: 90</string>
+
     <string name="dashboard_view_grades">See Your Grades</string>
     <string name="dashboard_goback"> LOG OUT </string>
 
