@@ -60,7 +60,10 @@
     <string name="course_placeholder">Ex: CMSC132 </string>
     <string name="percentage_label">Grade Percentage:</string>
     <string name="percentage_placeholder">Ex: 90</string>
-
+    <string name="weight_label">Grade weight: </string>
+    <string name="weight_placeholder">Ex: .2</string>
+    <string name="title_placeholder">Ex: Assignment 1</string>
+    <string name="title_label">Title: </string>
     <string name="dashboard_view_grades">See Your Grades</string>
     <string name="dashboard_goback"> LOG OUT </string>
 
