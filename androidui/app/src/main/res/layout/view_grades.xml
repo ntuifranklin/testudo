@@ -3,72 +3,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableRow
+        <DigitalClock
+            android:id="@+id/clock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center" />
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/course_ET"
+            android:hint="@string/course_placeholder"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:layout_below="@+id/clock">
+        </EditText>
 
-            <DigitalClock
-                android:id="@+id/clock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="CMSC132"
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold">
-            </TextView>
-        </TableRow>
-        <TableRow
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
-        </TableRow>
-        <TableRow
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="20sp" >
-            <Button
-                android:id="@+id/EmailButton"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:text="Email A Professor" />
-        </TableRow>
-        <TableRow
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="20sp" >
-            <Button
-                android:id="@+id/AddGrade"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:text="Add Grade" />
-        </TableRow>
-        <TableRow
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_marginTop="20sp">
-            <Button
-                android:id="@+id/GoBackGrades"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:text="Go Back" />
-        </TableRow>
+            android:id="@+id/Grade"
+            android:layout_marginLeft="26dp"
+            android:textSize="32sp"
+            android:text="N/A"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/course_ET"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"></TextView>
 
-    </TableLayout>
+        <Button
+            android:id="@+id/EmailButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Email A Professor"
+            android:layout_below="@id/Grade"/>
+        <Button
+            android:id="@+id/AddGrade"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:text="Add Grade"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/EmailButton"/>
+        <Button
+            android:id="@+id/SeeGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="See Grade"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/AddGrade">
+
+        </Button>
+        <Button
+            android:id="@+id/GoBackGrades"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:text="Go Back"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/SeeGrade"/>
+    </RelativeLayout>
 </ScrollView>
