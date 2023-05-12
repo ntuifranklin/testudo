@@ -28,13 +28,51 @@
             app:layout_constraintTop_toBottomOf="@+id/coursename_label"></EditText>
 
         <TextView
+            android:id="@+id/title_label"
+            style="@style/SignUpLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/course_ET"></TextView>
+
+        <EditText
+            android:id="@+id/title_ET"
+            style="@style/SignUpET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_placeholder"
+            android:inputType="number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_label"></EditText>
+
+        <TextView
+            android:id="@+id/weight_label"
+            style="@style/SignUpLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weight_label"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_ET"></TextView>
+
+        <EditText
+            android:id="@+id/weight_ET"
+            style="@style/SignUpET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/weight_placeholder"
+            android:inputType="number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weight_label"></EditText>
+
+        <TextView
             android:id="@+id/percentage_label"
             style="@style/SignUpLabels"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/percentage_label"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/course_ET"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/weight_ET"></TextView>
 
         <EditText
             android:id="@+id/percentage_ET"
