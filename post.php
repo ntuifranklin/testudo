@@ -70,6 +70,34 @@ switch ($action) {
 
     };
     break;
+    case 'submit_assignment': {
+        /*
+         submit_assignment($assignmenttitle='', $weight=0.0, $courseid='', $studentuid='', $earnedgrade = 0.0)
+        */
+            $assigntmentTitle = "" ; 
+            $weight = 0.0;
+            $courseid = "" ;
+            $studentuid = "";
+            $earnedgrade= 0.0;
+
+            if (array_key_exists("assignmentTitle", $_POST))
+                $assignmentTitle = $_POST["assignmentTitle"];
+            if (array_key_exists("weight", $_POST))
+                $weight = $_POST["weight"];
+                
+            if (array_key_exists("courseid", $_POST))
+                $courseid = $_POST["courseid"];
+                
+            if (array_key_exists("studentuid", $_POST))
+                $studentuid = $_POST["studentuid"];
+                
+            if (array_key_exists("earnedgrade", $_POST))
+                $earnedgrade = $_POST["earnedgrade"];
+            $r = submit_assignment($assignmentTitle, $weight, $courseid, $studentuid, $earnedgrade) ;
+
+            echo json_encode($r);
+
+    } ; break ;
     default :
         echo json_encode($unathorized);
         break;

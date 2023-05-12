@@ -72,22 +72,34 @@ function register_course($studentuid='',$courseid='') {
     
 } ;
 
-/*
+function submit_assignment($assignmenttitle='', $weight=0.0, $courseid='', $studentuid='', $earnedgrade = 0.0) {
+    $r = "";
+    $conn = connectdb();
+    $stmt = $conn->prepare("INSERT INTO `ASSIGNMENT` VALUES (?, ?, ?, ?, ?, ?) ;");
+    
+    $assignmentid = uniqid("$studentuid"."_"."$courseid", true);
+    
+    $stmt->bind_param(
+        "ssdssd", 
+        $assignmentid,
+        $assignmenttitle,
+        $weight,
+        $courseid,
+        $studentuid,
+        $earnedgrade
+    );
+    try{
+        if ($stmt -> execute() ) {
+            $conn -> close();
+            $r = "[{'COURSEID':'$courseid','STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'success','ERROR':''}]" ;
+        } 
+    } catch(Exception $e) {
+        $r = "[{'COURSEID':'$courseid','STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'failure','ERROR':'$e'}]" ;
+    } ;
+    
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+};
 
-CREATE TABLE IF NOT EXISTS `STUDENT` (
-  `UID` varchar(100) NOT NULL,
-  `USERNAME` varchar(100) DEFAULT NULL,
-  `PASSWORD` varchar(100) DEFAULT NULL,
-  `DOB` date NOT NULL,
-  `FIRSTNAME` varchar(100) DEFAULT NULL,
-  `MIDDLENAME` varchar(100) DEFAULT NULL,
-  `LASTNAME` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`UID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
-
-*/
 
 function register_student(
                         $uid='',$username='', 
