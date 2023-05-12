@@ -271,6 +271,112 @@ class Backend {
 
      }
 
+    fun post_course_assignment( assignmentTitle:String, weight : Double, studentuid: String, earnedgrade : Double ) : Boolean {
+        var success : Boolean = true
+        loginUrl = MainActivity.SERVER_BASE_POST_URL
+        var result : String = "["
+        var s = ""
+        var errorMessage : String  = "["
+
+
+        try {
+            s = ""
+            val url = URL(loginUrl)
+            val postData : String = "name=submit_assignment&assignmentTitle=${assignmentTitle}&studentuid=${studentuid}&earnedgrade=${earnedgrade}"
+            Log.w(MainActivity.MA,postData)
+            val conn = url.openConnection() as HttpURLConnection
+            conn.requestMethod = "POST"
+            conn.doOutput = true
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+            conn.setRequestProperty("Content-Length", postData.length.toString())
+            conn.useCaches = false
+
+            DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+            /*
+            BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
+                var line: String?
+                while (br.readLine().also { line = it } != null) {
+                    s += line
+                    Log.w(MainActivity.MA,""+line)
+                }
+            }
+            */
+
+            val iStream : InputStream = conn.inputStream
+            val scan: Scanner = Scanner(iStream)
+
+            while (scan.hasNext())
+            {
+                s += scan.nextLine()
+            }
+            var d : JSONArray = JSONArray(s)
+            for (i in 0 until d.length()) {
+
+                var jsa : JSONObject = d.optJSONObject(i)
+                var error_message : String = ""
+                error_message = jsa.getString("ERROR")
+                if (error_message.length > 0)
+                    success = false
+
+            }
+        } catch( e: JSONException) {
+            errorMessage += "{'error_message':'${e.message}'},"
+        }
+
+
+
+        return success
+
+    }
+
+    fun post_signup_student(student: Student) : Boolean {
+        loginUrl = MainActivity.SERVER_BASE_POST_URL
+        var result : Boolean  = true
+        var s = ""
+
+        try {
+            s = ""
+            val url = URL(loginUrl)
+            val postData : String = "name=signup_student" + "&" + student.getStudentObjectAsURLParams()
+            Log.w(MainActivity.MA,postData)
+            val conn = url.openConnection() as HttpURLConnection
+            conn.requestMethod = "POST"
+            conn.doOutput = true
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+            conn.setRequestProperty("Content-Length", postData.length.toString())
+            conn.useCaches = false
+
+            DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+
+            val iStream : InputStream = conn.inputStream
+            val scan: Scanner = Scanner(iStream)
+
+            while (scan.hasNext())
+            {
+                s += scan.nextLine()
+            }
+            var d : JSONArray = JSONArray(s)
+            Log.w(MainActivity.MA, "return from server : " + s)
+            for (i in 0 until d.length()) {
+
+                var jsa : JSONObject = d.optJSONObject(i)
+                var error_message : String = ""
+                error_message = jsa.getString("ERROR")
+                if (error_message.length > 0)
+                    result = false
+
+            }
+        } catch( e: JSONException) {
+
+            result = false
+            Log.w(MainActivity.MA, "Result From Server : " + s)
+
+        }
+        return result
+
+    }
+
+
     fun get_registered_courses(studentuid: String) : ArrayList<String> {
         loginUrl = MainActivity.SERVER_BASE_URL
         var enrollCourses: ArrayList<String> = ArrayList<String>()
@@ -301,8 +407,6 @@ class Backend {
                 enrollCourses.add(cid)
 
             }
-
-
 
         } catch(e : JSONException) {
 

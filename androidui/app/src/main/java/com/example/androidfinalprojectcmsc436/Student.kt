@@ -8,6 +8,8 @@ class Student {
     private var firstname : String = ""
     private var middlename : String = ""
     private var lastname : String = ""
+    private var registeredCourses : ArrayList<String>
+    private var courseAssignments : HashMap<String, ArrayList<Assignment>>
 
     //May want to make a default construtor as will so that students can be added to the database without needing to be signed in
     constructor(uid: String,
@@ -25,11 +27,30 @@ class Student {
         this.firstname = firstname
         this.middlename = middlename
         this.lastname = lastname
+        this.registeredCourses = ArrayList<String>()
+        this.courseAssignments = HashMap<String, ArrayList<Assignment>>()
     }
 
     /* Overloading constructor*/
     constructor(
     ) : this("","","","","","","") {
+
+    }
+    private fun copy (uid: String = getUid(),
+                      username: String = getUsername(),
+                      password: String = getPassword(),
+                      dob: String = getDob(),
+                      firstname: String = getFirstName(),
+                      middlename: String = getMiddleName(),
+                      lastname: String = getLastName()) :  Student {
+
+        return Student(uid,
+            username,
+            password,
+            dob,
+            firstname,
+            middlename,
+            lastname)
 
     }
 
@@ -56,6 +77,9 @@ class Student {
     fun getLastName() : String {
         return this.lastname
     }
+    fun getPassword() : String {
+        return this.password
+    }
 
     fun setUid(uid: String) {
         this.uid = uid
@@ -81,8 +105,50 @@ class Student {
         this.lastname = lastname
     }
 
-    fun addStudentToDatabase(firstname: String, middlename: String, lastname: String, UID : String, DOB : String, username: String, password: String) : Unit {
-        //TODO, add user data from the sign up screen to the database
+    fun setPassword(password: String) {
+        this.password = password
+    }
+    fun getRegisteredCourses() : ArrayList<String> {
+        return registeredCourses
+    }
+
+    fun setRegisteredCourses(registeredCourses : ArrayList<String>) {
+        this.registeredCourses = registeredCourses
+    }
+
+    fun getCourseAssignments() : HashMap<String, ArrayList<Assignment>> {
+        return courseAssignments
+    }
+
+    fun setCourseAssignments(course : String, assignment: Assignment) : Unit {
+        if (!registeredCourses.contains(course)) {
+            return
+        } else if (!courseAssignments.containsKey(course)) {
+            val assignments : ArrayList<Assignment> = ArrayList<Assignment>()
+            assignments.add(assignment)
+            courseAssignments[course] = assignments
+        } else {
+            var assignments : java.util.ArrayList<Assignment>? = courseAssignments[course]
+            assignments!!.add(assignment)
+            courseAssignments[course] = assignments!!
+        }
+    }
+
+    fun getStudentObjectAsURLParams(): String {
+        var params = ""
+        params += "firstname=${getFirstName()}"
+        params += "&middlename=${getMiddleName()}"
+        params += "&lastname=${getLastName()}"
+        params += "&dob=${getDob()}"
+        params += "&uid=${getUid()}"
+        params += "&username=${getUsername()}"
+        params += "&password=${getPassword()}"
+        return params
+    }
+    fun addStudentToDatabase() : Boolean {
+        var b : Backend = Backend()
+        return b.post_signup_student(this.copy())
+
     }
 
     override fun toString(): String {

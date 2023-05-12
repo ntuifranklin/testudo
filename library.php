@@ -33,6 +33,21 @@ function get_student_infos($username='',$password='') {
     
 } ;
 
+
+function get_grades($studentuid='') {
+    $conn = connectdb();
+    $stmt = $conn->prepare("SELECT * FROM ASSIGNMENT WHERE STUDENTUID=?;");
+    $stmt->bind_param("s", $studentuid);
+    $stmt -> execute();
+    $result = $stmt -> get_result() ;
+    $r = [] ;
+    while($row = $result->fetch_assoc()) {
+        array_push($r, $row);
+    } ;
+    $conn -> close();
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+    
+} ;
 function get_student_registered_courses($studentuid='') {
     $conn = connectdb();
     $stmt = $conn->prepare("SELECT * FROM ENROLLEDCOURSE WHERE STUDENTUID=?;");
@@ -70,6 +85,66 @@ function register_course($studentuid='',$courseid='') {
     
     return json_encode($r, JSON_PRETTY_PRINT) ;
     
+} ;
+
+function submit_assignment($assignmenttitle='', $weight=0.0, $studentuid='', $earnedgrade = 0.0) {
+    $r = "";
+    $conn = connectdb();
+    $stmt = $conn->prepare("INSERT INTO `ASSIGNMENT` VALUES (?, ?, ?, ?, ?, ?) ;");
+    
+    $assignmentid = uniqid("$studentuid"."_"."$courseid", true);
+    
+    $stmt->bind_param(
+        "ssdsd", 
+        $assignmentid,
+        $assignmenttitle,
+        $weight,
+        $studentuid,
+        $earnedgrade
+    );
+    try{
+        if ($stmt -> execute() ) {
+            $conn -> close();
+            $r = "[{'STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'success','ERROR':''}]" ;
+        } 
+    } catch(Exception $e) {
+        $r = "[{'STUDENTID':'$studentid','ASSIGNMENTTITLE':'$assignmentitle', 'STATUS':'failure','ERROR':'$e'}]" ;
+    } ;
+    
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+};
+
+
+function register_student(
+                        $uid='',$username='', 
+                        $password='', $dob='', 
+                        $firstname='', $middlename='',
+                        $lastname='') {
+    $r = "";
+    $conn = connectdb();
+    $stmt = $conn->prepare("INSERT INTO STUDENT VALUES (?, ?, ?, ?, ?, ?, ?) ;");
+    
+    
+    $stmt->bind_param(
+        "sssssss", 
+        $uid,
+        $username,
+        $password,
+        $dob,
+        $firstname,
+        $middlename,
+        $lastname
+    );
+    try{
+        if ($stmt -> execute() ) {
+            $conn -> close();
+            $r = "[{'UID':'$uid', 'STATUS':'success','ERROR':''}]" ;
+        } 
+    } catch(Exception $e) {
+        $r = "[{'UID':'$uid', 'STATUS':'failure','ERROR':'$e'}]" ; 
+    } ;
+    
+    return json_encode($r, JSON_PRETTY_PRINT) ;
 } ;
 
 function get_all_students() {

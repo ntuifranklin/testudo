@@ -38,9 +38,8 @@ class ViewStudentRegisteredCoursesThread : Thread {
 
     inner class ShowRegisteredCoursesListUI : Runnable {
         override fun run() {
-            studentDashboardActivity.viewRegisteredCoursesGUI(coursesAsStrings)
-            
-
+            //studentDashboardActivity.viewRegisteredCoursesGUI(coursesAsStrings)
+            MainActivity.LOGGED_IN_STUDENT.setRegisteredCourses(coursesAsStrings)
         }
 
     }
