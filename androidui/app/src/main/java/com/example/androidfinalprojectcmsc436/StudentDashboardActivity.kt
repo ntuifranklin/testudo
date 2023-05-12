@@ -99,6 +99,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         regCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
         regCourseButton.setText(R.string.dashboard_register_course)
 
+
         viewRegisCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
         viewRegisCourseButton.setText(R.string.dashboard_view_registered_courses)
         viewRegisCourseButton.setOnClickListener(this)
