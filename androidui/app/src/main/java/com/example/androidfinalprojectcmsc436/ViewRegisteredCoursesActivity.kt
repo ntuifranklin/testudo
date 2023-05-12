@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class ViewRegisteredCoursesActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var registeredCourses : ArrayList<String> = MainActivity.LOGGED_IN_STUDENT.getRegisteredCourses()
+    private lateinit var registeredCourses : ArrayList<String>
     lateinit var rl : RelativeLayout
     lateinit var backButton : Button
 
@@ -19,7 +19,7 @@ class ViewRegisteredCoursesActivity : AppCompatActivity(), View.OnClickListener 
         setContentView(R.layout.view_registered_courses)
 
         rl = findViewById(R.id.relLay)
-
+        registeredCourses = MainActivity.LOGGED_IN_STUDENT.getRegisteredCourses()
         viewRegisteredregisteredCoursesGUI( )
     }
 

@@ -60,9 +60,18 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun goToRegisteredClasses() {
-        var viewCoursesIntent : Intent = Intent( this, ViewRegisteredCoursesActivity::class.java)
-        startActivity( viewCoursesIntent )
-        overridePendingTransition( R.anim.slide_from_right, 0 )
+        var sc : ArrayList<String> = LOGGED_IN_STUDENT.getRegisteredCourses()
+        if ( sc != null && sc.size > 0) {
+            var viewCoursesIntent : Intent = Intent( this, ViewRegisteredCoursesActivity::class.java)
+            startActivity( viewCoursesIntent )
+            overridePendingTransition( R.anim.slide_from_right, 0 )
+        } else {
+            var t : Toast = Toast.makeText(this, "You do not have any registered courses yet. Please Register for a course", Toast.LENGTH_LONG)
+            t.setGravity(Gravity.CENTER, (screenWidth/4).toInt(), (screenHeight/4).toInt())
+            t.show()
+            return
+        }
+
     }
 
     fun goToViewGrades( v : View) {
@@ -163,16 +172,9 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
             goToViewGrades(viewGrades)
 
         } else if (v != null && v == viewRegisCourseButton) {
-            var sc : ArrayList<String> = MainActivity.LOGGED_IN_STUDENT.getRegisteredCourses()
-            if ( sc != null && sc.size > 0)
-                goToRegisteredClasses()
-            else {
-                var t : Toast = Toast.makeText(this, "You do not have any registered courses yet. Please Register for a course", Toast.LENGTH_LONG)
-                t.setGravity(Gravity.CENTER, (screenWidth/4).toInt(), (screenHeight/4).toInt())
-                t.show()
-            }
             viewRegisteredCoursesTask = ViewStudentRegisteredCoursesThread(this, MainActivity.LOGGED_IN_STUDENT.getUid())
             viewRegisteredCoursesTask.start()
+
         } else if ( v!= null && v == viewCourseBackButton) {
             if ( rl != null )
                 setContentView(rl)
