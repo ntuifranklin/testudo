@@ -50,8 +50,7 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         bw = (screenWidth.toFloat()*0.7).toInt()
         bh = (screenHeight/10).toInt()
         buildStudentDashboardMenuByCode()
-        viewRegisteredCoursesTask = ViewStudentRegisteredCoursesThread(this, MainActivity.LOGGED_IN_STUDENT.getUid())
-        viewRegisteredCoursesTask.start()
+
     }
 
     fun goToRegisterClasses() {
@@ -172,6 +171,8 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
                 t.setGravity(Gravity.CENTER, (screenWidth/4).toInt(), (screenHeight/4).toInt())
                 t.show()
             }
+            viewRegisteredCoursesTask = ViewStudentRegisteredCoursesThread(this, MainActivity.LOGGED_IN_STUDENT.getUid())
+            viewRegisteredCoursesTask.start()
         } else if ( v!= null && v == viewCourseBackButton) {
             if ( rl != null )
                 setContentView(rl)
