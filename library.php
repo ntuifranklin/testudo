@@ -33,6 +33,21 @@ function get_student_infos($username='',$password='') {
     
 } ;
 
+
+function get_grades($studentuid='') {
+    $conn = connectdb();
+    $stmt = $conn->prepare("SELECT * FROM ASSIGNMENT WHERE STUDENTUID=?;");
+    $stmt->bind_param("s", $studentuid);
+    $stmt -> execute();
+    $result = $stmt -> get_result() ;
+    $r = [] ;
+    while($row = $result->fetch_assoc()) {
+        array_push($r, $row);
+    } ;
+    $conn -> close();
+    return json_encode($r, JSON_PRETTY_PRINT) ;
+    
+} ;
 function get_student_registered_courses($studentuid='') {
     $conn = connectdb();
     $stmt = $conn->prepare("SELECT * FROM ENROLLEDCOURSE WHERE STUDENTUID=?;");

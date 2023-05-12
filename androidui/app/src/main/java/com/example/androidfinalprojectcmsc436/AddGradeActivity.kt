@@ -6,14 +6,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class AddGradeActivity : AppCompatActivity(), View.OnClickListener {
-
+    private lateinit var add_grade_button : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_grades)
+        add_grade_button  = findViewById<Button>(R.id.add_grade_button)
+        add_grade_button.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
-        var add_grade_button : Button = findViewById<Button>(R.id.add_grade_button)
+
 
         if ( v == null )
             return
