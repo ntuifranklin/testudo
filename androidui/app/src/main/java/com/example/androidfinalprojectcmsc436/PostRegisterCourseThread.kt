@@ -1,5 +1,6 @@
 package com.example.androidfinalprojectcmsc436
 import android.util.Log
+import android.widget.Toast
 
 class PostRegisterCourseThread : Thread {
     private lateinit var registerCourseTaskActivity : RegisterClassesActivity
@@ -41,6 +42,9 @@ class PostRegisterCourseThread : Thread {
 
     inner class ShowRegisteredCoursesListAlertBox : Runnable {
         override fun run() {
+            var message : String = "Successfully Registered the course(s)"
+            var t : Toast = Toast.makeText(registerCourseTaskActivity, message, Toast.LENGTH_SHORT)
+            t.show()
             registerCourseTaskActivity.showCourseRegistersuccess(result, registerCourseTaskActivity)
         }
 

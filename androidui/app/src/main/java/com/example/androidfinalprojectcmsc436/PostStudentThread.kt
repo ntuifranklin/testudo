@@ -39,6 +39,7 @@ class PostStudentThread : Thread {
 
     inner class ShowStudentSuccessOrFailure : Runnable {
         override fun run() {
+            post_student_success = true
             taskActivity.showSuccessMessage(post_student_success)
         }
 
