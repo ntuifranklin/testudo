@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         signUpButtonView = findViewById(R.id.sign_up_button)
         loginButtonView.setOnClickListener(ButtonHandler())
         signUpButtonView.setOnClickListener(ButtonHandler())
-        pref = this.getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        pref = this.getSharedPreferences(APP_UNIQUE_ID, Context.MODE_PRIVATE)
         editor = pref.edit()
         var default_username : String = ""
         var default_password : String = ""
@@ -152,6 +152,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var LOGGED_IN_STUDENT : Student
         const val SAVED_USERNAME_KEY : String = "SAVED_USERNAME"
         const val SAVED_PASSWORD_KEY : String = "SAVED_PASSWORD"
+        const val APP_UNIQUE_ID : String = "3fdaJz6iyCq7Zv8pVKxU"
     }
 
 }
