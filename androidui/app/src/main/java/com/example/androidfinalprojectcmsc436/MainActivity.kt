@@ -1,7 +1,9 @@
 package com.example.androidfinalprojectcmsc436
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var loginButtonView : Button
     lateinit var signUpButtonView : Button
     lateinit var loginTask : LogStudentByWebThreadTask
+    lateinit var pref : SharedPreferences
+    lateinit var editor : SharedPreferences.Editor
     var result: String = ""
     var loginUrl : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +41,14 @@ class MainActivity : AppCompatActivity() {
         signUpButtonView = findViewById(R.id.sign_up_button)
         loginButtonView.setOnClickListener(ButtonHandler())
         signUpButtonView.setOnClickListener(ButtonHandler())
-
+        pref = this.getSharedPreferences(APP_UNIQUE_ID, Context.MODE_PRIVATE)
+        editor = pref.edit()
+        var default_username : String = ""
+        var default_password : String = ""
+        var saved_username : String? = pref.getString(SAVED_USERNAME_KEY,default_username)
+        var saved_password : String? = pref.getString(SAVED_PASSWORD_KEY,default_password)
+        usernameET.setText(saved_username)
+        passwordET.setText(saved_password)
         createAd( )
     }
 
@@ -100,6 +111,10 @@ class MainActivity : AppCompatActivity() {
             // show a dashboard for the student
             LOGGED_IN_STUDENT = student
             StudentDashboardActivity.LOGGED_IN_STUDENT = student
+            // Save the username and password for this user
+            editor.putString(SAVED_USERNAME_KEY,student.getUsername())
+            editor.putString(SAVED_PASSWORD_KEY, student.getPassword())
+            editor.commit()
             var myIntent : Intent = Intent( this, StudentDashboardActivity::class.java )
             startActivity( myIntent )
             overridePendingTransition( R.anim.slide_from_right, 0 )
@@ -135,6 +150,9 @@ class MainActivity : AppCompatActivity() {
         const val SERVER_BASE_URL: String = "http://ec2-54-196-231-193.compute-1.amazonaws.com/testudo/backend.php"
         const val MA : String =  "TestudoMainActivity"
         lateinit var LOGGED_IN_STUDENT : Student
+        const val SAVED_USERNAME_KEY : String = "SAVED_USERNAME"
+        const val SAVED_PASSWORD_KEY : String = "SAVED_PASSWORD"
+        const val APP_UNIQUE_ID : String = "3fdaJz6iyCq7Zv8pVKxU"
     }
 
 }
