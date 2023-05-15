@@ -97,22 +97,22 @@ class StudentDashboardActivity : AppCompatActivity(), View.OnClickListener {
         viewGrades.setOnClickListener(this)
 
         regCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
-        goBackButton.setTextColor(resources.getColor(R.color.white))
         regCourseButton.setText(R.string.dashboard_register_course)
+        goBackButton.setTextColor(resources.getColor(R.color.white))
 
         viewRegisCourseButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
-        goBackButton.setTextColor(resources.getColor(R.color.white))
         viewRegisCourseButton.setText(R.string.dashboard_view_registered_courses)
+        goBackButton.setTextColor(resources.getColor(R.color.white))
         viewRegisCourseButton.setOnClickListener(this)
 
 
         viewGrades.setBackgroundColor( resources.getColor(R.color.purple_700) )
-        goBackButton.setTextColor(resources.getColor(R.color.white))
         viewGrades.setText(R.string.dashboard_view_grades)
+        goBackButton.setTextColor(resources.getColor(R.color.white))
 
         goBackButton.setBackgroundColor( resources.getColor(R.color.purple_700) )
-        goBackButton.setTextColor(resources.getColor(R.color.white))
         goBackButton.setText(R.string.dashboard_goback)
+        goBackButton.setTextColor(resources.getColor(R.color.white))
 
         rl = RelativeLayout( this )
 
